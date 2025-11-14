@@ -18,9 +18,7 @@
       0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, .28); }
       50%     { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
     }
-    .countdown-box {
-      animation: alert-pulse 2.2s ease-in-out infinite;
-    }
+    .countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
 
     /* ===== Form page dark theme (captura) ===== */
     :root { color-scheme: dark; }
@@ -413,13 +411,17 @@
         </form>
       </div>
 
+      <!-- CONFIRMAÇÃO (SEM botão WhatsApp) -->
       <div id="success-msg" class="hidden text-center mt-10">
         <h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3>
-        <p class="mt-2 text-gray-300">Nossa equipe entrará em contato em breve para o seu diagnóstico personalizado.</p>
-        <div class="mt-4 flex justify-center gap-4">
-          <a href="#home" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">Voltar ao site</a>
-          <a href="https://wa.me/5562982331156?text=Enviei%20meus%20dados%20para%20diagn%C3%B3stico"
-             class="px-4 py-2 rounded-lg bg-[#1DE9B6] text-black font-semibold hover:bg-[#14CBA8] transition">Falar no WhatsApp</a>
+        <p class="mt-2 text-gray-300">
+          Nossa equipe entrará em contato em breve para o seu diagnóstico personalizado.
+        </p>
+        <div class="mt-4 flex justify-center">
+          <a href="#home"
+             class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">
+            Voltar ao site
+          </a>
         </div>
       </div>
 
@@ -477,7 +479,7 @@
     syncHash();
 
     // ====== Countdown (top bar)
-    // Data alvo fixa: 28/11 às 23:59 no fuso local do visitante
+    // Data alvo fixa: 28/11 às 23:59 (fuso local do visitante)
     const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime(); // mês 10 = novembro
     const elDays = document.getElementById('cd-days');
     const elHours = document.getElementById('cd-hours');
