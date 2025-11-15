@@ -36,13 +36,6 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 .btn-glow:hover::after { animation:sweep .9s ease forwards; }
 .focus-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(29,233,182,.45); }
 .hidden-section { display:none; }
-
-/* Estilo adicional para justificar o H1 */
-.h1-justified {
-    text-align: justify;
-    text-justify: inter-word; /* Para um espaçamento mais uniforme entre as palavras */
-    hyphens: auto; /* Permite a hifenização para melhor justificação */
-}
 </style>
 </head>
 
@@ -80,11 +73,8 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
 
 <div class="flex flex-col items-center md:items-start">
-<h1 class="w-full font-serif text-4xl sm:text-5xl font-bold leading-tight h1-justified">
-<span class="text-slate-900">Consultoria de IA que organiza</span><br>
-<span class="text-teal-700">processos, automatiza a Gestão</span><br>
-<span class="text-teal-700">do seu negócio e elimina tarefas</span><br>
-<span class="text-teal-700">repetitivas</span>
+<h1 class="max-w-3xl mx-auto text-center font-serif text-4xl sm:text-5xl font-bold leading-tight">
+Consultoria de IA que organiza processos, automatiza a Gestão do seu negócio e elimina tarefas repetitivas
 </h1>
 
 <p class="mt-4 text-lg text-slate-700 md:text-left text-center">
