@@ -1,457 +1,411 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
-  <meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
-  <meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
-  <meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
+<meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
+<meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
+<meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    html { scroll-behavior: smooth; }
-
-    @keyframes alert-pulse {
-      0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, .28); }
-      50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
-    }
-    .countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
-
-    :root { color-scheme: dark; }
-    @keyframes floatIn {
-      from { opacity: 0; transform: translateY(14px) scale(.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes aurora {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    @keyframes sweep {
-      0% { transform: translateX(-120%); opacity: 0; }
-      50% { opacity: .7; }
-      100% { transform: translateX(120%); opacity: 0; }
-    }
-
-    .btn-glow {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      box-shadow: 0 8px 28px rgba(0,0,0,.35);
-    }
-    .btn-glow::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 12px;
-      background:
-        radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%),
-        conic-gradient(from 0deg at 50% 50%, #1DE9B6, #14CBA8, #19E2D7, #1DE9B6);
-      filter: blur(16px) saturate(1.2);
-      z-index: -1;
-      animation: aurora 6s linear infinite;
-      opacity: .7;
-    }
-    .btn-glow::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 40%;
-      left: -40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-      transform: translateX(-120%);
-      transition: transform .6s ease;
-      pointer-events: none;
-    }
-    .btn-glow:hover::after { animation: sweep .9s ease forwards; }
-    .focus-ring:focus { outline: none; box-shadow: 0 0 0 3px rgba(29,233,182,.45); }
-
-    .hidden-section { display: none; }
-  </style>
+<style>
+html { scroll-behavior: smooth; }
+@keyframes alert-pulse {
+0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, .28); }
+50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
+}
+.countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
+:root { color-scheme: dark; }
+@keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes aurora { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes sweep { 0% { transform: translateX(-120%); opacity: 0; } 50% { opacity: .7; } 100% { transform: translateX(120%); opacity: 0; } }
+.btn-glow { position: relative; isolation: isolate; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.35); }
+.btn-glow::before {
+content:""; position:absolute; inset:-2px; border-radius:12px;
+background: radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%), conic-gradient(from 0deg at 50% 50%, #1DE9B6,#14CBA8,#19E2D7,#1DE9B6);
+filter:blur(16px) saturate(1.2); z-index:-1; animation:aurora 6s linear infinite; opacity:.7;
+}
+.btn-glow::after {
+content:""; position:absolute; top:0; bottom:0; width:40%; left:-40%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
+}
+.btn-glow:hover::after { animation:sweep .9s ease forwards; }
+.focus-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(29,233,182,.45); }
+.hidden-section { display:none; }
+</style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 antialiased">
 
-  <div class="sticky top-0 z-50">
-    <div class="w-full bg-teal-900 text-white">
-      <div class="max-w-6xl mx-auto px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <p class="font-semibold">Últimos dias com desconto Black Friday</p>
+<div class="sticky top-0 z-50">
+<div class="w-full bg-teal-900 text-white">
+<div class="max-w-6xl mx-auto px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+<p class="font-semibold">Últimos dias com desconto Black Friday</p>
+<div id="countdown" class="countdown-box inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold text-white bg-gradient-to-r from-[#ef4444] via-[#dc2626] to-[#b91c1c]">
+<span id="cd-days">00</span>d
+<span id="cd-hours">00</span>h
+<span id="cd-minutes">00</span>m
+<span id="cd-seconds">00</span>s
+</div>
+<span id="cd-ended" class="hidden font-semibold text-yellow-300">promoção encerrada</span>
+</div>
+</div>
 
-        <div id="countdown"
-             class="countdown-box inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold
-                    text-white bg-gradient-to-r from-[#ef4444] via-[#dc2626] to-[#b91c1c]">
-          <span id="cd-days">00</span>d
-          <span id="cd-hours">00</span>h
-          <span id="cd-minutes">00</span>m
-          <span id="cd-seconds">00</span>s
-        </div>
+<header class="bg-white/90 backdrop-blur border-b border-slate-200">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<a href="#" class="font-serif text-xl font-semibold">N1 Inteligência Digital</a>
+<nav class="hidden md:flex items-center gap-6 text-sm">
+<a href="#modulos" class="hover:text-slate-600">Módulos por área</a>
+<a href="#final" class="hover:text-slate-600">Para quem é</a>
+<a href="#captura" class="inline-flex items-center rounded-lg px-4 py-2 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
+</nav>
+<button class="md:hidden inline-flex items-center rounded-lg border border-slate-300 px-3 py-1.5">Menu</button>
+</div>
+</header>
+</div>
 
-        <span id="cd-ended" class="hidden font-semibold text-yellow-300">promoção encerrada</span>
-      </div>
-    </div>
+<main id="home">
+<section class="border-b border-slate-300/80">
+<div class="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
 
-    <header class="bg-white/90 backdrop-blur border-b border-slate-200">
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" class="font-serif text-xl font-semibold">N1 Inteligência Digital</a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#modulos" class="hover:text-slate-600">Módulos por área</a>
-          <a href="#final" class="hover:text-slate-600">Para quem é</a>
-          <a href="#captura" class="inline-flex items-center rounded-lg px-4 py-2 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-            Agende sua Consulta
-          </a>
-        </nav>
-        <button class="md:hidden inline-flex items-center rounded-lg border border-slate-300 px-3 py-1.5">Menu</button>
-      </div>
-    </header>
-  </div>
+<div class="flex flex-col items-center md:items-start">
+<h1 class="max-w-3xl mx-auto text-center font-serif text-4xl sm:text-5xl font-bold leading-tight">
+<span class="text-slate-900">Consultoria de IA que</span> <br>
+<span class="text-teal-700">organiza processos,</span> <br>
+<span class="text-teal-700">automatiza a Gestão do seu</span> <br>
+<span class="text-slate-900">negócio</span> <span class="text-teal-700">e elimina tarefas</span> <br>
+<span class="text-teal-700">repetitivas</span>
+</h1>
 
-  <main id="home">
-    <section class="border-b border-slate-300/80">
-      <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <div class="max-w-2xl">
-          <h1 class="font-serif text-4xl sm:text-5xl font-bold leading-tight">
-            Consultoria de IA que <span class="text-teal-700">organiza processos</span>, <span class="text-teal-700">automatiza a Gestão do seu negócio</span> e <span class="text-teal-700">elimina tarefas repetitivas</span>
-          </h1>
+<p class="mt-4 text-lg text-slate-700 md:text-left text-center">
+Projetos 100% personalizados para o sua empresa
+</p>
 
-          <p class="mt-4 text-lg text-slate-700">
-            Projetos 100% personalizados para o sua empresa
-          </p>
+<div class="mt-6 flex flex-wrap gap-4 items-start justify-center md:justify-start">
+<div class="flex flex-col">
+<a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
+<span class="mt-1 text-xs text-slate-500 text-center md:text-left">consultoria grátis</span>
+</div>
 
-          <div class="mt-6 flex flex-wrap gap-4 items-start">
-            <div class="flex flex-col">
-              <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-                Agende sua Consulta
-              </a>
-              <span class="mt-1 text-xs text-slate-500">consultoria grátis</span>
-            </div>
+<div class="flex flex-col">
+<a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold border border-slate-300 hover:bg-white">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-700" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/></svg>
+WhatsApp
+</a>
+<span class="mt-1 text-xs text-slate-500 text-center md:text-left">fale diretamente comigo</span>
+</div>
+</div>
+</div>
 
-            <div class="flex flex-col">
-              <a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA."
-                 target="_blank" rel="noopener"
-                 class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold border border-slate-300 hover:bg-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-700" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/></svg>
-                WhatsApp
-              </a>
-              <span class="mt-1 text-xs text-slate-500">fale diretamente comigo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="hidden md:block"></div>
+</div>
+</section>
 
-    <section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
-        Nossos Módulos de IA por Área
-      </h2>
-      <p class="mt-3 text-slate-700">
-        Módulos que <strong>prospectam e atendem clientes</strong>, integrados a <strong>WhatsApp</strong>, <strong>Instagram</strong>, <strong>CRM</strong> e <strong>ERP</strong>.
-      </p>
+<section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
+<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
+Nossos Módulos de IA por Área
+</h2>
+<p class="mt-3 text-slate-700">
+Módulos que prospectam e atendem clientes, integrados a WhatsApp, Instagram, CRM e ERP.
+</p>
 
-      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Atendimento ao Cliente
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Automação de Agendamentos e Respostas</li>
-              <li>Suporte 24/7 e Personalização</li>
-              <li>Qualificação de Leads</li>
-            </ul>
-          </div>
-        </div>
+<div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Financeiro e Cobrança
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Lembretes de Pagamento Automatizados</li>
-              <li>Geração e Gestão de Faturas</li>
-              <li>Redução de Inadimplência</li>
-            </ul>
-          </div>
-        </div>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Atendimento ao Cliente
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Automação de Agendamentos e Respostas</li>
+<li>Suporte 24/7 e Personalização</li>
+<li>Qualificação de Leads</li>
+</ul>
+</div>
+</div>
 
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Análise de Dados
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Relatórios e Insights em Tempo Real</li>
-              <li>Decisões Baseadas em Dados</li>
-              <li>Previsão e Modelagem Preditiva</li>
-            </ul>
-          </div>
-        </div>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Financeiro e Cobrança
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Lembretes de Pagamento Automatizados</li>
+<li>Geração e Gestão de Faturas</li>
+<li>Redução de Inadimplência</li>
+</ul>
+</div>
+</div>
 
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Otimização de Processos
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Automação de Tarefas Repetitivas</li>
-              <li>Redução de Erros Operacionais</li>
-              <li>Otimização de Fluxos de Trabalho</li>
-            </ul>
-          </div>
-        </div>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Análise de Dados
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Relatórios e Insights em Tempo Real</li>
+<li>Decisões Baseadas em Dados</li>
+<li>Previsão e Modelagem Preditiva</li>
+</ul>
+</div>
+</div>
 
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Recrutamento e RH
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Triagem Inteligente de Candidatos</li>
-              <li>Automação de Entrevistas</li>
-              <li>Otimização da Experiência do Colaborador</li>
-            </ul>
-          </div>
-        </div>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Otimização de Processos
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Automação de Tarefas Repetitivas</li>
+<li>Redução de Erros Operacionais</li>
+<li>Otimização de Fluxos de Trabalho</li>
+</ul>
+</div>
+</div>
 
-        <div class="rounded-xl border border-slate-200 bg-white">
-          <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
-            Marketing e Conteúdo
-            <span class="ml-3 text-slate-500">+</span>
-          </button>
-          <div class="px-5 pb-4 hidden">
-            <ul class="list-disc pl-5 text-slate-700 space-y-1">
-              <li>Criação Automatizada de Conteúdo</li>
-              <li>Otimização de Campanhas</li>
-              <li>Análise de Performance de Marketing</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Recrutamento e RH
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Triagem Inteligente de Candidatos</li>
+<li>Automação de Entrevistas</li>
+<li>Otimização da Experiência do Colaborador</li>
+</ul>
+</div>
+</div>
 
-      <div class="mt-8">
-        <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-          Agende sua Consulta
-        </a>
-        <div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
-      </div>
-    </section>
+<div class="rounded-xl border border-slate-200 bg-white">
+<button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
+Marketing e Conteúdo
+<span class="ml-3 text-slate-500">+</span>
+</button>
+<div class="px-5 pb-4 hidden">
+<ul class="list-disc pl-5 text-slate-700 space-y-1">
+<li>Criação Automatizada de Conteúdo</li>
+<li>Otimização de Campanhas</li>
+<li>Análise de Performance de Marketing</li>
+</ul>
+</div>
+</div>
 
-    <section id="final" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
-        A N1 Inteligência Digital é para você se…
-      </h2>
+</div>
 
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <div class="p-6 rounded-xl border border-slate-200 bg-white">
-          <h3 class="font-semibold">Ainda responde clientes manualmente?</h3>
-          <p class="mt-2 text-slate-700">Seu atendimento fica disponível 24/7 com automação inteligente.</p>
-        </div>
-        <div class="p-6 rounded-xl border border-slate-200 bg-white">
-          <h3 class="font-semibold">Leads somem por falta de resposta rápida?</h3>
-          <p class="mt-2 text-slate-700">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p>
-        </div>
-        <div class="p-6 rounded-xl border border-slate-200 bg-white">
-          <h3 class="font-semibold">Seu financeiro sente o peso dos atrasos?</h3>
-          <p class="mt-2 text-slate-700">Cobrança e lembretes automáticos reduzem inadimplência.</p>
-        </div>
-        <div class="p-6 rounded-xl border border-slate-200 bg-white">
-          <h3 class="font-semibold">Sua equipe gasta tempo com tarefas repetitivas?</h3>
-          <p class="mt-2 text-slate-700">A IA cuida do operacional para o time focar no estratégico.</p>
-        </div>
-      </div>
+<div class="mt-8">
+<a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
+<div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
+</div>
+</section>
 
-      <div id="cta" class="mt-10">
-        <h3 class="text-xl font-semibold">Receba um plano personalizado de IA para automatizar sua empresa</h3>
-        <a href="#captura" class="mt-4 inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-          Agende sua Consulta
-        </a>
-        <div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
-      </div>
-    </section>
-  </main>
+<section id="final" class="max-w-6xl mx-auto px-6 py-16">
+<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
+A N1 Inteligência Digital é para você se…
+</h2>
 
-  <section id="captura" class="hidden-section min-h-screen bg-gradient-to-b from-[#0a0f0f] via-[#0e1414] to-[#0a0f0f] text-gray-100">
-    <header class="border-b border-white/10">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <h1 class="text-2xl font-semibold tracking-tight text-[#1DE9B6]">N1 Inteligência Digital</h1>
-        <a href="#home" class="text-sm text-gray-400 hover:text-[#1DE9B6] transition">Voltar</a>
-      </div>
-    </header>
+<div class="mt-8 grid md:grid-cols-2 gap-6">
 
-    <main class="max-w-3xl mx-auto px-6 py-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center text-white">
-        Mentoria e Automação para quem quer crescer com Inteligência Digital
-      </h2>
-      <p class="mt-3 text-center text-gray-400">
-        Preencha o formulário para receber um diagnóstico personalizado.
-      </p>
+<div class="p-6 rounded-xl border border-slate-200 bg-white">
+<h3 class="font-semibold">Ainda responde clientes manualmente?</h3>
+<p class="mt-2 text-slate-700">Seu atendimento fica disponível 24/7 com automação inteligente.</p>
+</div>
 
-      <div class="bg-[#1c2424]/90 rounded-2xl border border-white/10 shadow-2xl mt-10 p-8 backdrop-blur-md"
-           style="animation: floatIn .6s cubic-bezier(.2,.8,.2,1) both;">
-        <form id="diagnostico-form"
-              action="https://n8n-n8n-start.bgjw54.easypanel.host/webhook/fernandoreis"
-              method="POST" class="space-y-5">
-          <input name="first_name" placeholder="Nome*" required
-                 class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
-          <input name="last_name" placeholder="Sobrenome*" required
-                 class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
-          <input name="phone_number" type="tel" placeholder="+55 (DDD) 99999-9999" required
-                 class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
-          <input name="email" type="email" placeholder="E-mail corporativo*" required
-                 class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
-          <input name="company" placeholder="Nome da empresa (opcional)"
-                 class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
+<div class="p-6 rounded-xl border border-slate-200 bg-white">
+<h3 class="font-semibold">Leads somem por falta de resposta rápida?</h3>
+<p class="mt-2 text-slate-700">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p>
+</div>
 
-          <button type="submit"
-                  class="btn-glow focus-ring w-full relative rounded-lg px-5 py-3 font-semibold text-black bg-[#1DE9B6] hover:bg-[#14CBA8] transition-colors duration-300">
-            Enviar
-          </button>
-        </form>
-      </div>
+<div class="p-6 rounded-xl border border-slate-200 bg-white">
+<h3 class="font-semibold">Seu financeiro sente o peso dos atrasos?</h3>
+<p class="mt-2 text-slate-700">Cobrança e lembretes automáticos reduzem inadimplência.</p>
+</div>
 
-      <div id="success-msg" class="hidden text-center mt-10">
-        <h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3>
-        <p class="mt-2 text-gray-300">
-          Nossa equipe entrará em contato em breve para o seu diagnóstico personalizado.
-        </p>
-        <div class="mt-4 flex justify-center">
-          <a href="#home"
-             class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">
-            Voltar ao site
-          </a>
-        </div>
-      </div>
+<div class="p-6 rounded-xl border border-slate-200 bg-white">
+<h3 class="font-semibold">Sua equipe gasta tempo com tarefas repetitivas?</h3>
+<p class="mt-2 text-slate-700">A IA cuida do operacional para o time focar no estratégico.</p>
+</div>
 
-      <div id="error-msg" class="hidden text-center mt-10">
-        <h3 class="text-xl font-semibold text-red-400">Ocorreu um erro no envio.</h3>
-        <p class="mt-2 text-gray-300">Tente novamente em alguns minutos.</p>
-      </div>
-    </main>
+</div>
 
-    <footer class="mt-16 text-center text-gray-500 text-sm border-t border-white/10 pt-6">
-      © N1 Inteligência Digital — Todos os direitos reservados.
-    </footer>
-  </section>
+<div id="cta" class="mt-10">
+<h3 class="text-xl font-semibold">Receba um plano personalizado de IA para automatizar sua empresa</h3>
+<a href="#captura" class="mt-4 inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
+<div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
+</div>
+</section>
+</main>
 
-  <footer class="border-t border-slate-200">
-    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
-      <nav class="flex gap-4">
-        <a href="#" class="hover:text-slate-800">Privacidade</a>
-        <a href="#" class="hover:text-slate-800">Termos</a>
-      </nav>
-    </div>
-  </footer>
+<section id="captura" class="hidden-section min-h-screen bg-gradient-to-b from-[#0a0f0f] via-[#0e1414] to-[#0a0f0f] text-gray-100">
+<header class="border-b border-white/10">
+<div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+<h1 class="text-2xl font-semibold tracking-tight text-[#1DE9B6]">N1 Inteligência Digital</h1>
+<a href="#home" class="text-sm text-gray-400 hover:text-[#1DE9B6] transition">Voltar</a>
+</div>
+</header>
 
-  <script>
-    document.querySelectorAll('.accordion-trigger').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const panel = btn.nextElementSibling;
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        panel.classList.toggle('hidden');
-        const icon = btn.querySelector('span:last-child');
-        if (icon) icon.textContent = expanded ? '+' : '−';
-      });
-    });
+<main class="max-w-3xl mx-auto px-6 py-12">
 
-    const capturaSection = document.getElementById('captura');
-    const homeMain = document.getElementById('home');
+<h2 class="text-3xl sm:text-4xl font-bold text-center text-white">Mentoria e Automação para quem quer crescer com Inteligência Digital</h2>
+<p class="mt-3 text-center text-gray-400">Preencha o formulário para receber um diagnóstico personalizado.</p>
 
-    function syncHash() {
-      if (location.hash === '#captura') {
-        capturaSection.classList.remove('hidden-section');
-        homeMain.style.display = 'none';
-        window.scrollTo({ top: 0 });
-      } else {
-        capturaSection.classList.add('hidden-section');
-        homeMain.style.display = '';
-      }
-    }
-    window.addEventListener('hashchange', syncHash);
-    syncHash();
+<div class="bg-[#1c2424]/90 rounded-2xl border border-white/10 shadow-2xl mt-10 p-8 backdrop-blur-md" style="animation: floatIn .6s cubic-bezier(.2,.8,.2,1) both;">
+<form id="diagnostico-form" action="https://n8n-n8n-start.bgjw54.easypanel.host/webhook/fernandoreis" method="POST" class="space-y-5">
+<input name="first_name" placeholder="Nome*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
+<input name="last_name" placeholder="Sobrenome*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
+<input name="phone_number" type="tel" placeholder="+55 (DDD) 99999-9999" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
+<input name="email" type="email" placeholder="E-mail corporativo*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
+<input name="company" placeholder="Nome da empresa (opcional)" class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
 
-    const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime();
-    const elDays = document.getElementById('cd-days');
-    const elHours = document.getElementById('cd-hours');
-    const elMin = document.getElementById('cd-minutes');
-    const elSec = document.getElementById('cd-seconds');
-    const elEnded = document.getElementById('cd-ended');
-    const box = document.getElementById('countdown');
+<button type="submit" class="btn-glow focus-ring w-full relative rounded-lg px-5 py-3 font-semibold text-black bg-[#1DE9B6] hover:bg-[#14CBA8] transition-colors duration-300">
+Enviar
+</button>
+</form>
+</div>
 
-    function updateCountdown() {
-      const now = Date.now();
-      let diff = target - now;
+<div id="success-msg" class="hidden text-center mt-10">
+<h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3>
+<p class="mt-2 text-gray-300">Nossa equipe entrará em contato em breve para o seu diagnóstico personalizado.</p>
 
-      if (diff <= 0) {
-        box.classList.add('hidden');
-        elEnded.classList.remove('hidden');
-        clearInterval(timer);
-        return;
-      }
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
+<div class="mt-4 flex justify-center">
+<a href="#home" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">Voltar ao site</a>
+</div>
+</div>
 
-      elDays.textContent = String(d).padStart(2, '0');
-      elHours.textContent = String(h).padStart(2, '0');
-      elMin.textContent = String(m).padStart(2, '0');
-      elSec.textContent = String(s).padStart(2, '0');
-    }
-    const timer = setInterval(updateCountdown, 1000);
-    updateCountdown();
+<div id="error-msg" class="hidden text-center mt-10">
+<h3 class="text-xl font-semibold text-red-400">Ocorreu um erro no envio.</h3>
+<p class="mt-2 text-gray-300">Tente novamente em alguns minutos.</p>
+</div>
+</main>
 
-    const btn = document.querySelector('#captura .btn-glow');
-    if (btn) {
-      btn.addEventListener('pointermove', function(e) {
-        const r = btn.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        btn.style.setProperty('--x', x + '%');
-        btn.style.setProperty('--y', y + '%');
-      });
-    }
+<footer class="mt-16 text-center text-gray-500 text-sm border-t border-white/10 pt-6">
+© N1 Inteligência Digital — Todos os direitos reservados.
+</footer>
+</section>
 
-    const form = document.getElementById('diagnostico-form');
-    const successMsg = document.getElementById('success-msg');
-    const errorMsg = document.getElementById('error-msg');
+<footer class="border-t border-slate-200">
+<div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
+<p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
+<nav class="flex gap-4">
+<a href="#" class="hover:text-slate-800">Privacidade</a>
+<a href="#" class="hover:text-slate-800">Termos</a>
+</nav>
+</div>
+</footer>
 
-    if (form) {
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const data = new FormData(form);
-        const payload = {
-          first_name: data.get('first_name') || '',
-          last_name: data.get('last_name') || '',
-          phone_number: data.get('phone_number') || '',
-          email: data.get('email') || '',
-          company: data.get('company') || '',
-          source: 'landing-n1-inteligencia-digital',
-          timestamp: new Date().toISOString()
-        };
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (!res.ok) throw new Error('Erro no envio');
-          form.parentElement.classList.add('hidden');
-          successMsg.classList.remove('hidden');
-        } catch (err) {
-          errorMsg.classList.remove('hidden');
-        }
-      });
-    }
-  </script>
+<script>
+document.querySelectorAll('.accordion-trigger').forEach(btn => {
+btn.addEventListener('click', () => {
+const panel = btn.nextElementSibling;
+const expanded = btn.getAttribute('aria-expanded') === 'true';
+btn.setAttribute('aria-expanded', String(!expanded));
+panel.classList.toggle('hidden');
+const icon = btn.querySelector('span:last-child');
+if (icon) icon.textContent = expanded ? '+' : '−';
+});
+});
+
+const capturaSection = document.getElementById('captura');
+const homeMain = document.getElementById('home');
+
+function syncHash() {
+if (location.hash === '#captura') {
+capturaSection.classList.remove('hidden-section');
+homeMain.style.display = 'none';
+window.scrollTo({ top: 0 });
+} else {
+capturaSection.classList.add('hidden-section');
+homeMain.style.display = '';
+}
+}
+window.addEventListener('hashchange', syncHash);
+syncHash();
+
+const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime();
+const elDays = document.getElementById('cd-days');
+const elHours = document.getElementById('cd-hours');
+const elMin = document.getElementById('cd-minutes');
+const elSec = document.getElementById('cd-seconds');
+const elEnded = document.getElementById('cd-ended');
+const box = document.getElementById('countdown');
+
+function updateCountdown() {
+const now = Date.now();
+let diff = target - now;
+
+if (diff <= 0) {
+box.classList.add('hidden');
+elEnded.classList.remove('hidden');
+clearInterval(timer);
+return;
+}
+
+const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+const m = Math.floor((diff / (1000 * 60)) % 60);
+const s = Math.floor((diff / 1000) % 60);
+
+elDays.textContent = String(d).padStart(2, '0');
+elHours.textContent = String(h).padStart(2, '0');
+elMin.textContent = String(m).padStart(2, '0');
+elSec.textContent = String(s).padStart(2, '0');
+}
+
+const timer = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+const btn = document.querySelector('#captura .btn-glow');
+if (btn) {
+btn.addEventListener('pointermove', (e) => {
+const r = btn.getBoundingClientRect();
+const x = ((e.clientX - r.left) / r.width) * 100;
+const y = ((e.clientY - r.top) / r.height) * 100;
+btn.style.setProperty('--x', x + '%');
+btn.style.setProperty('--y', y + '%');
+});
+}
+
+const form = document.getElementById('diagnostico-form');
+const successMsg = document.getElementById('success-msg');
+const errorMsg = document.getElementById('error-msg');
+
+if (form) {
+form.addEventListener('submit', async (e) => {
+e.preventDefault();
+const data = new FormData(form);
+const payload = {
+first_name: data.get('first_name') || '',
+last_name: data.get('last_name') || '',
+phone_number: data.get('phone_number') || '',
+email: data.get('email') || '',
+company: data.get('company') || '',
+source: 'landing-n1-inteligencia-digital',
+timestamp: new Date().toISOString()
+};
+
+try {
+const res = await fetch(form.action, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error('Erro no envio');
+form.parentElement.classList.add('hidden');
+successMsg.classList.remove('hidden');
+} catch (err) {
+errorMsg.classList.remove('hidden');
+}
+});
+}
+</script>
+
 </body>
 </html>
