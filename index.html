@@ -10,21 +10,20 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     html { scroll-behavior: smooth; }
 
-    /* ===== Countdown styles (vermelho com pulsação de alerta) ===== */
     @keyframes alert-pulse {
       0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, .28); }
-      50%     { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
+      50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
     }
     .countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
 
-    /* ===== Form page dark theme (captura) ===== */
     :root { color-scheme: dark; }
     @keyframes floatIn {
       from { opacity: 0; transform: translateY(14px) scale(.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
     @keyframes aurora {
       0% { transform: translate(-50%, -50%) rotate(0deg); }
@@ -35,35 +34,52 @@
       50% { opacity: .7; }
       100% { transform: translateX(120%); opacity: 0; }
     }
-    .btn-glow { position: relative; isolation: isolate; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.35); }
+
+    .btn-glow {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+    }
     .btn-glow::before {
-      content: ""; position: absolute; inset: -2px; border-radius: 12px;
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
       background:
         radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%),
         conic-gradient(from 0deg at 50% 50%, #1DE9B6, #14CBA8, #19E2D7, #1DE9B6);
-      filter: blur(16px) saturate(1.2); z-index: -1; animation: aurora 6s linear infinite; opacity: .7;
+      filter: blur(16px) saturate(1.2);
+      z-index: -1;
+      animation: aurora 6s linear infinite;
+      opacity: .7;
     }
     .btn-glow::after {
-      content: ""; position: absolute; top: 0; bottom: 0; width: 40%; left: -40%;
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40%;
+      left: -40%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-      transform: translateX(-120%); transition: transform .6s ease; pointer-events: none;
+      transform: translateX(-120%);
+      transition: transform .6s ease;
+      pointer-events: none;
     }
     .btn-glow:hover::after { animation: sweep .9s ease forwards; }
     .focus-ring:focus { outline: none; box-shadow: 0 0 0 3px rgba(29,233,182,.45); }
 
-    /* helper: hide sections */
     .hidden-section { display: none; }
   </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 antialiased">
 
-  <!-- ===== Announcement / Countdown Bar ===== -->
   <div class="sticky top-0 z-50">
     <div class="w-full bg-teal-900 text-white">
       <div class="max-w-6xl mx-auto px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-3">
         <p class="font-semibold">Últimos dias com desconto Black Friday</p>
-        <!-- CONTADOR EM VERMELHO -->
+
         <div id="countdown"
              class="countdown-box inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold
                     text-white bg-gradient-to-r from-[#ef4444] via-[#dc2626] to-[#b91c1c]">
@@ -72,17 +88,15 @@
           <span id="cd-minutes">00</span>m
           <span id="cd-seconds">00</span>s
         </div>
+
         <span id="cd-ended" class="hidden font-semibold text-yellow-300">promoção encerrada</span>
       </div>
     </div>
 
-    <!-- NAVBAR -->
     <header class="bg-white/90 backdrop-blur border-b border-slate-200">
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" class="font-serif text-xl font-semibold">N1 Inteligência Digital</a>
         <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#passos" class="hover:text-slate-600">Como funciona</a>
-          <a href="#dept-ia" class="hover:text-slate-600">Departamento de IA</a>
           <a href="#modulos" class="hover:text-slate-600">Módulos por área</a>
           <a href="#final" class="hover:text-slate-600">Para quem é</a>
           <a href="#captura" class="inline-flex items-center rounded-lg px-4 py-2 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
@@ -94,20 +108,19 @@
     </header>
   </div>
 
-  <!-- ======= PAGE 1 — LANDING ======= -->
   <main id="home">
-    <!-- HERO -->
     <section class="border-b border-slate-300/80">
       <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <h1 class="font-serif text-4xl sm:text-5xl font-bold leading-tight">
-            Consultoria de IA que <span class="text-teal-700">aumenta vendas</span>, <span class="text-teal-700">libera o time</span> e <span class="text-teal-700">automatiza tarefas repetitivas</span>
+            Consultoria de IA que <span class="text-teal-700">organiza processos</span>, <span class="text-teal-700">automatiza a Gestão do seu negócio</span> e <span class="text-teal-700">elimina tarefas repetitivas</span>
           </h1>
+
           <p class="mt-4 text-lg text-slate-700">
-            Projetos de IA sob medida para acelerar atendimento, finanças e operações — sem reescrever seus processos.
+            Projetos 100% personalizados para o sua empresa
           </p>
+
           <div class="mt-6 flex flex-wrap gap-4 items-start">
-            <!-- CTA PRINCIPAL -->
             <div class="flex flex-col">
               <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
                 Agende sua Consulta
@@ -115,7 +128,6 @@
               <span class="mt-1 text-xs text-slate-500">consultoria grátis</span>
             </div>
 
-            <!-- BOTÃO WHATSAPP -->
             <div class="flex flex-col">
               <a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA."
                  target="_blank" rel="noopener"
@@ -128,111 +140,10 @@
           </div>
         </div>
 
-        <!-- REMOVIDO: quadrado branco vazio -->
         <div class="hidden md:block"></div>
       </div>
     </section>
 
-    <!-- PASSO A PASSO -->
-    <section id="passos" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
-        O passo a passo para elevar a produtividade da sua empresa com IA
-      </h2>
-
-      <div class="relative mt-10">
-        <div class="absolute left-1/2 -ml-[1px] top-0 bottom-0 w-[2px] bg-slate-200 hidden md:block" aria-hidden="true"></div>
-
-        <ol class="space-y-12">
-          <li class="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <div class="md:mr-10 p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
-                <h3 class="font-semibold">1) Mapeamos onde estão suas perdas</h3>
-                <p class="mt-2 text-slate-600">Analisamos seu fluxo de trabalho e identificamos tarefas repetitivas que podem ser automatizadas.</p>
-              </div>
-            </div>
-            <div></div>
-          </li>
-          <li class="grid md:grid-cols-2 gap-8 items-start">
-            <div class="hidden md:block"></div>
-            <div>
-              <div class="md:ml-10 p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
-                <h3 class="font-semibold">2) Criamos agentes para cada setor</h3>
-                <p class="mt-2 text-slate-600">IA para responder clientes, qualificar leads, agendar reuniões, cobrar e apoiar processos internos.</p>
-              </div>
-            </div>
-          </li>
-          <li class="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <div class="md:mr-10 p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
-                <h3 class="font-semibold">3) Teste em ambiente real</h3>
-                <p class="mt-2 text-slate-600">Testes práticos para garantir que tudo funciona como esperado, sem gargalos.</p>
-              </div>
-            </div>
-            <div></div>
-          </li>
-          <li class="grid md:grid-cols-2 gap-8 items-start">
-            <div class="hidden md:block"></div>
-            <div>
-              <div class="md:ml-10 p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
-                <h3 class="font-semibold">4) Suas IAs começam a operar</h3>
-                <p class="mt-2 text-slate-600">A IA elimina tarefas manuais, economiza tempo e libera a equipe para o estratégico.</p>
-              </div>
-            </div>
-          </li>
-        </ol>
-
-        <div class="mt-10">
-          <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-            Agende sua Consulta
-          </a>
-          <div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEPARTAMENTO DE IA -->
-    <section id="dept-ia" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
-        É como ter um departamento de IA dentro da sua empresa
-      </h2>
-      <p class="mt-3 text-slate-700">Soluções conectadas para acelerar todas as áreas, sem fricção.</p>
-
-      <div class="mt-10 grid lg:grid-cols-3 gap-8 items-start">
-        <ul class="space-y-4">
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Atendimento e Vendas Automatizada</strong><br><span class="text-slate-600">Respostas rápidas, qualificação de leads e agendamentos.</span></li>
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>CRM Automatizado</strong><br><span class="text-slate-600">Registro e atualização de contatos sem esforço.</span></li>
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Marketing e Conteúdo Inteligente</strong><br><span class="text-slate-600">Conteúdo guiado por dados e distribuição otimizada.</span></li>
-        </ul>
-
-        <div class="grid place-items-center">
-          <div class="relative w-64 h-64 rounded-full border-2 border-slate-300/80 grid place-items-center bg-white">
-            <div class="text-center">
-              <div class="text-4xl">🤖</div>
-              <div class="mt-2 font-semibold">IA no Centro</div>
-              <div class="text-sm text-slate-600">Integra dados, canais e processos</div>
-            </div>
-            <div class="absolute inset-2 rounded-full border border-slate-200 pointer-events-none"></div>
-            <div class="absolute inset-6 rounded-full border border-slate-200 pointer-events-none"></div>
-          </div>
-        </div>
-
-        <ul class="space-y-4">
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Gestão Inteligente de Processos</strong><br><span class="text-slate-600">Fluxos automáticos fim a fim.</span></li>
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Financeiro e Cobrança Automática</strong><br><span class="text-slate-600">Lembretes, faturas e reconciliação.</span></li>
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Recrutamento e Gestão de Pessoas</strong><br><span class="text-slate-600">Triagem e acompanhamento ágeis.</span></li>
-          <li class="p-4 rounded-xl border border-slate-200 bg-white"><strong>Análise de Dados e Estratégia</strong><br><span class="text-slate-600">Insights em tempo real para decisões.</span></li>
-        </ul>
-      </div>
-
-      <div class="mt-8">
-        <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">
-          Agende sua Consulta
-        </a>
-        <div class="text-xs text-slate-500 mt-1">consultoria grátis</div>
-      </div>
-    </section>
-
-    <!-- MÓDULOS POR ÁREA -->
     <section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
       <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
         Nossos Módulos de IA por Área
@@ -242,7 +153,6 @@
       </p>
 
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- (accordion itens iguais ao original) -->
         <div class="rounded-xl border border-slate-200 bg-white">
           <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center accordion-trigger" aria-expanded="false">
             Atendimento ao Cliente
@@ -336,7 +246,6 @@
       </div>
     </section>
 
-    <!-- SEÇÃO FINAL -->
     <section id="final" class="max-w-6xl mx-auto px-6 py-16">
       <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
         A N1 Inteligência Digital é para você se…
@@ -371,7 +280,6 @@
     </section>
   </main>
 
-  <!-- ======= PAGE 2 — CAPTURA (no mesmo arquivo) ======= -->
   <section id="captura" class="hidden-section min-h-screen bg-gradient-to-b from-[#0a0f0f] via-[#0e1414] to-[#0a0f0f] text-gray-100">
     <header class="border-b border-white/10">
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -411,7 +319,6 @@
         </form>
       </div>
 
-      <!-- CONFIRMAÇÃO (SEM botão WhatsApp) -->
       <div id="success-msg" class="hidden text-center mt-10">
         <h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3>
         <p class="mt-2 text-gray-300">
@@ -436,7 +343,6 @@
     </footer>
   </section>
 
-  <!-- FOOTER PÁGINA PRINCIPAL -->
   <footer class="border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
       <p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
@@ -447,11 +353,9 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // ====== Accordion
-    document.querySelectorAll('.accordion-trigger').forEach(btn => {
-      btn.addEventListener('click', () => {
+    document.querySelectorAll('.accordion-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
         const panel = btn.nextElementSibling;
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!expanded));
@@ -461,7 +365,6 @@
       });
     });
 
-    // ====== Navegação entre páginas no mesmo arquivo (home <-> captura)
     const capturaSection = document.getElementById('captura');
     const homeMain = document.getElementById('home');
 
@@ -478,9 +381,7 @@
     window.addEventListener('hashchange', syncHash);
     syncHash();
 
-    // ====== Countdown (top bar)
-    // Data alvo fixa: 28/11 às 23:59 (fuso local do visitante)
-    const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime(); // mês 10 = novembro
+    const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime();
     const elDays = document.getElementById('cd-days');
     const elHours = document.getElementById('cd-hours');
     const elMin = document.getElementById('cd-minutes');
@@ -511,10 +412,9 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // ====== Efeito halo no botão glow (página de captura)
     const btn = document.querySelector('#captura .btn-glow');
     if (btn) {
-      btn.addEventListener('pointermove', (e) => {
+      btn.addEventListener('pointermove', function(e) {
         const r = btn.getBoundingClientRect();
         const x = ((e.clientX - r.left) / r.width) * 100;
         const y = ((e.clientY - r.top) / r.height) * 100;
@@ -523,13 +423,12 @@
       });
     }
 
-    // ====== Submissão do formulário (página de captura)
     const form = document.getElementById('diagnostico-form');
     const successMsg = document.getElementById('success-msg');
     const errorMsg = document.getElementById('error-msg');
 
     if (form) {
-      form.addEventListener('submit', async (e) => {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const data = new FormData(form);
         const payload = {
