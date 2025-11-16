@@ -36,12 +36,12 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 .btn-glow:hover::after { animation:sweep .9s ease forwards; }
 .focus-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(29,233,182,.45); }
 .hidden-section { display:none; }
-@keyframes stripMove {
+@keyframes tickerMove {
 0% { transform: translateX(0); }
 100% { transform: translateX(-50%); }
 }
-.strip-anim {
-animation: stripMove 6s linear infinite;
+.ticker-strip {
+animation: tickerMove 18s linear infinite;
 }
 </style>
 </head>
@@ -112,9 +112,14 @@ WhatsApp
 </div>
 </section>
 
-<div class="w-full bg-slate-50">
-<div class="relative h-2 overflow-hidden">
-<div class="strip-anim absolute inset-0 w-[200%] bg-gradient-to-r from-teal-500 via-emerald-400 to-teal-500"></div>
+<div class="w-full bg-[#f5e6c8] border-y border-slate-200/60">
+<div class="max-w-6xl mx-auto overflow-hidden">
+<div class="ticker-strip flex items-center gap-16 py-2 whitespace-nowrap text-sm sm:text-base font-medium text-slate-800">
+<span>Automatize seu negócio N1 Inteligência Digital</span>
+<span>Automatize seu negócio N1 Inteligência Digital</span>
+<span>Automatize seu negócio N1 Inteligência Digital</span>
+<span>Automatize seu negócio N1 Inteligência Digital</span>
+</div>
 </div>
 </div>
 
