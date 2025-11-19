@@ -23,7 +23,7 @@ html { scroll-behavior: smooth; }
 50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
 }
 .countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
-:root { color-scheme: light; } /* Mudado para light para a página principal */
+:root { color-scheme: light; }
 @keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes aurora { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes sweep { 0% { transform: translateX(-120%); opacity: 0; } 50% { opacity: .7; } 100% { transform: translateX(120%); opacity: 0; } }
@@ -48,9 +48,9 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 .ticker-strip {
 animation: tickerMove 18s linear infinite;
 }
-/* ANIMAÇÃO 3D: Estilos para o canvas */
 #sphere-container {
-  min-height: 400px; /* Garante uma altura mínima em telas menores */
+  min-height: 300px; /* Reduzido um pouco para melhor encaixe no mobile */
+  margin-top: 2.5rem; /* Adiciona um espaço acima no mobile (md:mt-0 remove no desktop) */
 }
 #bg-canvas {
   display: block;
@@ -93,7 +93,7 @@ animation: tickerMove 18s linear infinite;
 <section class="border-b border-slate-300/80">
 <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
 
-<div class="flex flex-col items-center md:items-start">
+<div class="flex flex-col items-center md:items-start md:order-1 order-2">
 <h1 class="max-w-3xl mx-auto text-center font-serif text-4xl sm:text-5xl font-bold leading-tight">
 Consultoria de IA que
 <span class="text-teal-700"> organiza processos,</span>
@@ -122,8 +122,8 @@ WhatsApp
 </div>
 </div>
 
-<!-- ANIMAÇÃO 3D: Container para a esfera -->
-<div id="sphere-container" class="hidden md:block w-full h-full bg-slate-900 rounded-2xl">
+<!-- Container da esfera agora é a segunda coluna -->
+<div id="sphere-container" class="w-full h-full md:order-2 order-1 md:mt-0">
   <canvas id="bg-canvas"></canvas>
 </div>
 
@@ -341,6 +341,7 @@ Enviar
 <!-- SCRIPT COMBINADO -->
 <script>
 // Scripts da Landing Page Original
+// ... (código do accordion, hashchange, countdown, etc. mantido aqui) ...
 document.querySelectorAll('.accordion-trigger').forEach(btn => {
 btn.addEventListener('click', () => {
 const panel = btn.nextElementSibling;
@@ -381,8 +382,8 @@ const now = Date.now();
 let diff = target - now;
 
 if (diff <= 0) {
-box.classList.add('hidden');
-elEnded.classList.remove('hidden');
+if(box) box.classList.add('hidden');
+if(elEnded) elEnded.classList.remove('hidden');
 clearInterval(timer);
 return;
 }
@@ -392,10 +393,10 @@ const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
 const m = Math.floor((diff / (1000 * 60)) % 60);
 const s = Math.floor((diff / 1000) % 60);
 
-elDays.textContent = String(d).padStart(2, '0');
-elHours.textContent = String(h).padStart(2, '0');
-elMin.textContent = String(m).padStart(2, '0');
-elSec.textContent = String(s).padStart(2, '0');
+if(elDays) elDays.textContent = String(d).padStart(2, '0');
+if(elHours) elHours.textContent = String(h).padStart(2, '0');
+if(elMin) elMin.textContent = String(m).padStart(2, '0');
+if(elSec) elSec.textContent = String(s).padStart(2, '0');
 }
 
 const timer = setInterval(updateCountdown, 1000);
@@ -448,21 +449,18 @@ errorMsg.classList.remove('hidden');
 // ==========================================================
 // INÍCIO DO SCRIPT DA ANIMAÇÃO 3D
 // ==========================================================
-// A MÁGICA: Pega o container da esfera em vez da tela inteira
 const sphereContainer = document.getElementById("sphere-container");
 
 if (sphereContainer) {
     const canvas = document.getElementById("bg-canvas");
-    const renderer = new THREE.WebGLRenderer({ canvas, antialiMias: true, alpha: true });
+    // Fundo transparente para a esfera
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene = new THREE.Scene();
-    // Removido o fog para melhor integração com o fundo escuro
-    // scene.fog = new THREE.FogExp2(0x050509, 0.32); 
-
     const camera = new THREE.PerspectiveCamera(
       45,
-      sphereContainer.clientWidth / sphereContainer.clientHeight, // Aspecto baseado no container
+      sphereContainer.clientWidth / sphereContainer.clientHeight,
       0.1,
       100
     );
@@ -501,12 +499,13 @@ if (sphereContainer) {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        vec3 colorCore = vec3(0.10, 0.20, 0.30);
-        vec3 colorEdge = vec3(0.70, 0.95, 1.00);
-        vec3 colorGlow = vec3(0.1, 0.9, 0.7); // Tonalidade mais verde/teal
+        // Cores alteradas para tons de verde/teal
+        vec3 colorCore = vec3(0.05, 0.15, 0.12); // Verde bem escuro
+        vec3 colorEdge = vec3(0.1, 0.8, 0.6);   // Verde mais claro
+        vec3 colorGlow = vec3(0.2, 1.0, 0.8);   // Verde brilhante (glow)
         float glow = smoothstep(0.0, 0.4, vNoise);
         vec3 color = mix(colorCore, colorEdge, vNoise);
-        color = mix(color, colorGlow, glow * 0.35);
+        color = mix(color, colorGlow, glow * 0.45); // Aumentado o efeito do glow
         float alpha = 1.0 - smoothstep(0.3, 0.5, d);
         alpha *= 0.95;
         gl_FragColor = vec4(color, alpha);
@@ -514,7 +513,6 @@ if (sphereContainer) {
     `;
 
     const geometry = new THREE.SphereGeometry(1.4, 180, 180);
-
     const uniforms = {
       uTime:          { value: 0 },
       uNoiseAmp:      { value: 0.9 },
@@ -535,33 +533,31 @@ if (sphereContainer) {
     scene.add(points);
 
     const mouse = new THREE.Vector2(0, 0);
-
-    // Interação do mouse baseada no container, não na janela
     window.addEventListener("mousemove", (event) => {
         const rect = sphereContainer.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-        
-        // Só atualiza se o mouse estiver sobre o container
-        if (x >= -1 && x <= 1 && y >= -1 && y <= 1) {
-            mouse.set(x, y);
-            uniforms.uMouse.value.lerp(mouse, 0.1);
+        if (rect.width > 0 && rect.height > 0) { // Evita divisão por zero
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            if (x >= -1 && x <= 1 && y >= -1 && y <= 1) {
+                mouse.set(x, y);
+                uniforms.uMouse.value.lerp(mouse, 0.1);
+            }
         }
     });
 
-    // Responsividade baseada no container
     function onResize() {
       const width = sphereContainer.clientWidth;
       const height = sphereContainer.clientHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
+      if (width > 0 && height > 0) {
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
     }
     window.addEventListener("resize", onResize);
     onResize();
 
     let clock = new THREE.Clock();
-
     function animate() {
       requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
@@ -570,7 +566,6 @@ if (sphereContainer) {
       points.rotation.x = Math.sin(elapsed * 0.15) * 0.1;
       renderer.render(scene, camera);
     }
-
     animate();
 }
 </script>
