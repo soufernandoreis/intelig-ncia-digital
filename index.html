@@ -367,8 +367,8 @@ if (sphereContainer) {
       }
     `;
 
-    // **TAMANHO DIFERENTE PARA DESKTOP E MOBILE**
-    const sphereRadius = isMobile ? 0.6 : 1.0; 
+    // **TAMANHO 0.2 PARA MOBILE, MANTIDO 1.0 PARA DESKTOP**
+    const sphereRadius = isMobile ? 0.2 : 1.0; 
     const geometry = new THREE.SphereGeometry(sphereRadius, 200, 200); 
     
     const uniforms = {
@@ -390,9 +390,9 @@ if (sphereContainer) {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
     
-    // **POSIÇÃO DIFERENTE PARA DESKTOP E MOBILE**
+    // POSIÇÃO DIFERENTE PARA DESKTOP E MOBILE
     if (isMobile) {
-      points.position.y = 0.8; // Sobe a esfera no mobile
+      points.position.y = 0.8; 
     }
 
     const mouse = new THREE.Vector2(0, 0);
