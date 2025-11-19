@@ -41,16 +41,19 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 .btn-glow:hover::after { animation:sweep .9s ease forwards; }
 .focus-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(29,233,182,.45); }
 .hidden-section { display:none; }
-@keyframes tickerMove {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-.ticker-strip {
-animation: tickerMove 18s linear infinite;
+
+/* AJUSTES PARA A ESFERA COMO FUNDO */
+#hero-section {
+  position: relative; /* Contexto para o posicionamento absoluto da esfera */
+  overflow: hidden; /* Garante que a esfera não "vaze" para fora da seção */
 }
 #sphere-container {
-  min-height: 300px; /* Reduzido um pouco para melhor encaixe no mobile */
-  margin-top: 2.5rem; /* Adiciona um espaço acima no mobile (md:mt-0 remove no desktop) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca o canvas ATRÁS do conteúdo de texto */
 }
 #bg-canvas {
   display: block;
@@ -90,57 +93,47 @@ animation: tickerMove 18s linear infinite;
 </div>
 
 <main id="home">
-<section class="border-b border-slate-300/80">
-<div class="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+<!-- A SEÇÃO HERO AGORA CONTÉM A ESFERA COMO FUNDO -->
+<section id="hero-section" class="border-b border-slate-300/80">
+  
+  <!-- Container da Esfera (agora no fundo) -->
+  <div id="sphere-container">
+    <canvas id="bg-canvas"></canvas>
+  </div>
 
-<div class="flex flex-col items-center md:items-start md:order-1 order-2">
-<h1 class="max-w-3xl mx-auto text-center font-serif text-4xl sm:text-5xl font-bold leading-tight">
-Consultoria de IA que
-<span class="text-teal-700"> organiza processos,</span>
-<span class="text-teal-700"> automatiza a Gestão do seu negócio</span>
-e
-<span class="text-teal-700"> elimina tarefas repetitivas</span>
-</h1>
+  <!-- Conteúdo de Texto (agora sobre a esfera) -->
+  <div class="relative max-w-6xl mx-auto px-6 py-16 md:py-20 flex items-center justify-start min-h-[60vh] md:min-h-[70vh]">
+    <div class="flex flex-col items-center md:items-start max-w-2xl">
+      <h1 class="text-center font-serif text-4xl sm:text-5xl font-bold leading-tight md:text-left">
+        Consultoria de IA que
+        <span class="text-teal-700"> organiza processos,</span>
+        <span class="text-teal-700"> automatiza a Gestão do seu negócio</span>
+        e
+        <span class="text-teal-700"> elimina tarefas repetitivas</span>
+      </h1>
 
-<p class="mt-4 text-lg text-slate-700 md:text-left text-center">
-Projetos 100% personalizados para o sua empresa
-</p>
+      <p class="mt-4 text-lg text-slate-700 md:text-left text-center">
+        Projetos 100% personalizados para o sua empresa
+      </p>
 
-<div class="mt-6 flex flex-wrap gap-4 items-start justify-center md:justify-start">
-<div class="flex flex-col">
-<a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
-<span class="mt-1 text-xs text-slate-500 text-center md:text-left">consultoria grátis</span>
-</div>
-
-<div class="flex flex-col">
-<a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold border border-slate-300 hover:bg-white">
-<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-700" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/></svg>
-WhatsApp
-</a>
-<span class="mt-1 text-xs text-slate-500 text-center md:text-left">fale diretamente comigo</span>
-</div>
-</div>
-</div>
-
-<!-- Container da esfera agora é a segunda coluna -->
-<div id="sphere-container" class="w-full h-full md:order-2 order-1 md:mt-0">
-  <canvas id="bg-canvas"></canvas>
-</div>
-
-</div>
+      <div class="mt-6 flex flex-wrap gap-4 items-start justify-center md:justify-start">
+        <div class="flex flex-col">
+          <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow">Agende sua Consulta</a>
+          <span class="mt-1 text-xs text-slate-500 text-center md:text-left">consultoria grátis</span>
+        </div>
+        <div class="flex flex-col">
+          <a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold border border-slate-300 hover:bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-700" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/></svg>
+            WhatsApp
+          </a>
+          <span class="mt-1 text-xs text-slate-500 text-center md:text-left">fale diretamente comigo</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Restante do conteúdo da página... -->
-<div class="w-full bg-[#f5e6c8] border-y border-slate-200/60">
-<div class="max-w-6xl mx-auto overflow-hidden">
-<div class="ticker-strip flex items-center gap-16 py-2 whitespace-nowrap text-sm sm:text-base font-medium text-slate-800">
-<span>Automatize seu negócio N1 Inteligência Digital</span>
-<span>Automatize seu negócio N1 Inteligência Digital</span>
-<span>Automatize seu negócio N1 Inteligência Digital</span>
-<span>Automatize seu negócio N1 Inteligência Digital</span>
-</div>
-</div>
-</div>
+<!-- FAIXA AMARELA REMOVIDA -->
 
 <section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
 <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-300/80 pb-4">
@@ -489,7 +482,7 @@ if (sphereContainer) {
         vec3 newPos = pos + normal * displacement;
         vNoise = n;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
-        gl_PointSize = 2.2;
+        gl_PointSize = 2.0; /* Reduzido o tamanho do ponto */
       }
     `;
 
@@ -499,24 +492,27 @@ if (sphereContainer) {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        // Cores alteradas para tons de verde/teal
-        vec3 colorCore = vec3(0.05, 0.15, 0.12); // Verde bem escuro
-        vec3 colorEdge = vec3(0.1, 0.8, 0.6);   // Verde mais claro
-        vec3 colorGlow = vec3(0.2, 1.0, 0.8);   // Verde brilhante (glow)
+        // Cores alteradas para tons de preto/cinza
+        vec3 colorCore = vec3(0.0, 0.0, 0.0);       // Centro preto
+        vec3 colorEdge = vec3(0.25, 0.25, 0.25);    // Borda cinza escuro
+        vec3 colorGlow = vec3(0.5, 0.5, 0.5);       // Brilho cinza claro
+        
         float glow = smoothstep(0.0, 0.4, vNoise);
         vec3 color = mix(colorCore, colorEdge, vNoise);
-        color = mix(color, colorGlow, glow * 0.45); // Aumentado o efeito do glow
+        color = mix(color, colorGlow, glow * 0.35);
+        
         float alpha = 1.0 - smoothstep(0.3, 0.5, d);
-        alpha *= 0.95;
+        alpha *= (0.5 + vNoise * 0.5); // Pontos mais brilhantes ficam mais opacos
+
         gl_FragColor = vec4(color, alpha);
       }
     `;
 
-    const geometry = new THREE.SphereGeometry(1.4, 180, 180);
+    const geometry = new THREE.SphereGeometry(1.6, 200, 200); // Aumentada a esfera e a densidade
     const uniforms = {
       uTime:          { value: 0 },
-      uNoiseAmp:      { value: 0.9 },
-      uMouseStrength: { value: 0.5 },
+      uNoiseAmp:      { value: 0.7 }, // Reduzido para um efeito mais sutil
+      uMouseStrength: { value: 0.3 }, // Reduzido para um efeito mais sutil
       uMouse:         { value: new THREE.Vector2(0.0, 0.0) }
     };
 
@@ -525,7 +521,7 @@ if (sphereContainer) {
       vertexShader,
       fragmentShader,
       transparent: true,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending, // Mudado para NormalBlending para cores escuras
       depthWrite: false
     });
 
@@ -535,23 +531,25 @@ if (sphereContainer) {
     const mouse = new THREE.Vector2(0, 0);
     window.addEventListener("mousemove", (event) => {
         const rect = sphereContainer.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) { // Evita divisão por zero
+        if (rect.width > 0 && rect.height > 0) {
             const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
             const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-            if (x >= -1 && x <= 1 && y >= -1 && y <= 1) {
-                mouse.set(x, y);
-                uniforms.uMouse.value.lerp(mouse, 0.1);
-            }
+            // A interação do mouse agora é mais suave
+            mouse.set(x, y);
+            
         }
     });
 
     function onResize() {
-      const width = sphereContainer.clientWidth;
-      const height = sphereContainer.clientHeight;
-      if (width > 0 && height > 0) {
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+      const parent = renderer.domElement.parentElement;
+      if (parent) {
+        const width = parent.clientWidth;
+        const height = parent.clientHeight;
+        if (width > 0 && height > 0) {
+          renderer.setSize(width, height);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        }
       }
     }
     window.addEventListener("resize", onResize);
@@ -562,8 +560,13 @@ if (sphereContainer) {
       requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
       uniforms.uTime.value = elapsed;
-      points.rotation.y += 0.0025;
-      points.rotation.x = Math.sin(elapsed * 0.15) * 0.1;
+
+      // Suaviza a interpolação do mouse
+      uniforms.uMouse.value.lerp(mouse, 0.05);
+
+      points.rotation.y += 0.0015; // Rotação mais lenta
+      points.rotation.x = Math.sin(elapsed * 0.15) * 0.05; // Movimento mais sutil
+
       renderer.render(scene, camera);
     }
     animate();
