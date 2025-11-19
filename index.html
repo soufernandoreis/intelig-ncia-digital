@@ -485,10 +485,9 @@ if (sphereContainer) {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        // Cores alteradas para tons de branco/cinza claro para destacar no fundo escuro
-        vec3 colorCore = vec3(0.5, 0.5, 0.5);    // Centro cinza
-        vec3 colorEdge = vec3(0.8, 0.8, 0.8);    // Borda cinza claro
-        vec3 colorGlow = vec3(1.0, 1.0, 1.0);    // Brilho branco
+        vec3 colorCore = vec3(0.5, 0.5, 0.5);
+        vec3 colorEdge = vec3(0.8, 0.8, 0.8);
+        vec3 colorGlow = vec3(1.0, 1.0, 1.0);
         
         float glow = smoothstep(0.0, 0.4, vNoise);
         vec3 color = mix(colorCore, colorEdge, vNoise);
@@ -501,7 +500,7 @@ if (sphereContainer) {
       }
     `;
 
-    const geometry = new THREE.SphereGeometry(1.4, 200, 200); // Esfera um pouco menor
+    const geometry = new THREE.SphereGeometry(1.0, 200, 200); // **ESFERA DIMINUÍDA**
     const uniforms = {
       uTime:          { value: 0 },
       uNoiseAmp:      { value: 0.7 },
@@ -514,7 +513,7 @@ if (sphereContainer) {
       vertexShader,
       fragmentShader,
       transparent: true,
-      blending: THREE.AdditiveBlending, // AdditiveBlending é melhor para partículas claras em fundo escuro
+      blending: THREE.AdditiveBlending,
       depthWrite: false
     });
 
@@ -523,7 +522,6 @@ if (sphereContainer) {
 
     const mouse = new THREE.Vector2(0, 0);
     window.addEventListener("mousemove", (event) => {
-        // Interação do mouse agora é em toda a janela para um efeito mais amplo
         const x = (event.clientX / window.innerWidth) * 2 - 1;
         const y = -(event.clientY / window.innerHeight) * 2 + 1;
         mouse.set(x, y);
