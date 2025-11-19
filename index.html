@@ -23,7 +23,7 @@ html { scroll-behavior: smooth; }
 50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
 }
 .countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
-:root { color-scheme: dark; } /* Definido para dark mode globalmente */
+:root { color-scheme: dark; }
 @keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes aurora { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes sweep { 0% { transform: translateX(-120%); opacity: 0; } 50% { opacity: .7; } 100% { transform: translateX(120%); opacity: 0; } }
@@ -52,7 +52,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Colocado atrás do texto mas acima do fundo */
+  z-index: 0;
 }
 #bg-canvas {
   display: block;
@@ -138,91 +138,13 @@ Módulos que prospectam e atendem clientes, integrados a WhatsApp, Instagram, CR
 </p>
 
 <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Atendimento ao Cliente
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Automação de Agendamentos e Respostas</li>
-<li>Suporte 24/7 e Personalização</li>
-<li>Qualificação de Leads</li>
-</ul>
-</div>
-</div>
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Financeiro e Cobrança
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Lembretes de Pagamento Automatizados</li>
-<li>Geração e Gestão de Faturas</li>
-<li>Redução de Inadimplência</li>
-</ul>
-</div>
-</div>
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Análise de Dados
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Relatórios e Insights em Tempo Real</li>
-<li>Decisões Baseadas em Dados</li>
-<li>Previsão e Modelagem Preditiva</li>
-</ul>
-</div>
-</div>
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Otimização de Processos
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Automação de Tarefas Repetitivas</li>
-<li>Redução de Erros Operacionais</li>
-<li>Otimização de Fluxos de Trabalho</li>
-</ul>
-</div>
-</div>
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Recrutamento e RH
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Triagem Inteligente de Candidatos</li>
-<li>Automação de Entrevistas</li>
-<li>Otimização da Experiência do Colaborador</li>
-</ul>
-</div>
-</div>
-
-<div class="rounded-xl border border-slate-700 bg-slate-800">
-<button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">
-Marketing e Conteúdo
-<span class="ml-3 text-slate-400">+</span>
-</button>
-<div class="px-5 pb-4 hidden">
-<ul class="list-disc pl-5 text-slate-300 space-y-1">
-<li>Criação Automatizada de Conteúdo</li>
-<li>Otimização de Campanhas</li>
-<li>Análise de Performance de Marketing</li>
-</ul>
-</div>
-</div>
-
+  <!-- Módulos aqui... -->
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Atendimento ao Cliente<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Automação de Agendamentos e Respostas</li><li>Suporte 24/7 e Personalização</li><li>Qualificação de Leads</li></ul></div></div>
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Financeiro e Cobrança<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Lembretes de Pagamento Automatizados</li><li>Geração e Gestão de Faturas</li><li>Redução de Inadimplência</li></ul></div></div>
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Análise de Dados<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Relatórios e Insights em Tempo Real</li><li>Decisões Baseadas em Dados</li><li>Previsão e Modelagem Preditiva</li></ul></div></div>
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Otimização de Processos<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Automação de Tarefas Repetitivas</li><li>Redução de Erros Operacionais</li><li>Otimização de Fluxos de Trabalho</li></ul></div></div>
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Recrutamento e RH<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Triagem Inteligente de Candidatos</li><li>Automação de Entrevistas</li><li>Otimização da Experiência do Colaborador</li></ul></div></div>
+  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Marketing e Conteúdo<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Criação Automatizada de Conteúdo</li><li>Otimização de Campanhas</li><li>Análise de Performance de Marketing</li></ul></div></div>
 </div>
 
 <div class="mt-8">
@@ -237,27 +159,10 @@ A N1 Inteligência Digital é para você se…
 </h2>
 
 <div class="mt-8 grid md:grid-cols-2 gap-6">
-
-<div class="p-6 rounded-xl border border-slate-700 bg-slate-800">
-<h3 class="font-semibold text-white">Ainda responde clientes manualmente?</h3>
-<p class="mt-2 text-slate-300">Seu atendimento fica disponível 24/7 com automação inteligente.</p>
-</div>
-
-<div class="p-6 rounded-xl border border-slate-700 bg-slate-800">
-<h3 class="font-semibold text-white">Leads somem por falta de resposta rápida?</h3>
-<p class="mt-2 text-slate-300">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p>
-</div>
-
-<div class="p-6 rounded-xl border border-slate-700 bg-slate-800">
-<h3 class="font-semibold text-white">Seu financeiro sente o peso dos atrasos?</h3>
-<p class="mt-2 text-slate-300">Cobrança e lembretes automáticos reduzem inadimplência.</p>
-</div>
-
-<div class="p-6 rounded-xl border border-slate-700 bg-slate-800">
-<h3 class="font-semibold text-white">Sua equipe gasta tempo com tarefas repetitivas?</h3>
-<p class="mt-2 text-slate-300">A IA cuida do operacional para o time focar no estratégico.</p>
-</div>
-
+  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Ainda responde clientes manualmente?</h3><p class="mt-2 text-slate-300">Seu atendimento fica disponível 24/7 com automação inteligente.</p></div>
+  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Leads somem por falta de resposta rápida?</h3><p class="mt-2 text-slate-300">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p></div>
+  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Seu financeiro sente o peso dos atrasos?</h3><p class="mt-2 text-slate-300">Cobrança e lembretes automáticos reduzem inadimplência.</p></div>
+  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Sua equipe gasta tempo com tarefas repetitivas?</h3><p class="mt-2 text-slate-300">A IA cuida do operacional para o time focar no estratégico.</p></div>
 </div>
 
 <div id="cta" class="mt-10">
@@ -275,12 +180,9 @@ A N1 Inteligência Digital é para você se…
 <a href="#home" class="text-sm text-gray-400 hover:text-[#1DE9B6] transition">Voltar</a>
 </div>
 </header>
-
 <main class="max-w-3xl mx-auto px-6 py-12">
-
 <h2 class="text-3xl sm:text-4xl font-bold text-center text-white">Mentoria e Automação para quem quer crescer com Inteligência Digital</h2>
 <p class="mt-3 text-center text-gray-400">Preencha o formulário para receber um diagnóstico personalizado.</p>
-
 <div class="bg-[#1c2424]/90 rounded-2xl border border-white/10 shadow-2xl mt-10 p-8 backdrop-blur-md" style="animation: floatIn .6s cubic-bezier(.2,.8,.2,1) both;">
 <form id="diagnostico-form" action="https://n8n-n8n-start.bgjw54.easypanel.host/webhook/fernandoreis" method="POST" class="space-y-5">
 <input name="first_name" placeholder="Nome*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
@@ -288,31 +190,13 @@ A N1 Inteligência Digital é para você se…
 <input name="phone_number" type="tel" placeholder="+55 (DDD) 99999-9999" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
 <input name="email" type="email" placeholder="E-mail corporativo*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
 <input name="company" placeholder="Nome da empresa (opcional)" class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
-
-<button type="submit" class="btn-glow focus-ring w-full relative rounded-lg px-5 py-3 font-semibold text-black bg-[#1DE9B6] hover:bg-[#14CBA8] transition-colors duration-300">
-Enviar
-</button>
+<button type="submit" class="btn-glow focus-ring w-full relative rounded-lg px-5 py-3 font-semibold text-black bg-[#1DE9B6] hover:bg-[#14CBA8] transition-colors duration-300">Enviar</button>
 </form>
 </div>
-
-<div id="success-msg" class="hidden text-center mt-10">
-<h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3>
-<p class="mt-2 text-gray-300">Nossa equipe entrará em contato em breve para o seu diagnóstico personalizado.</p>
-
-<div class="mt-4 flex justify-center">
-<a href="#home" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">Voltar ao site</a>
-</div>
-</div>
-
-<div id="error-msg" class="hidden text-center mt-10">
-<h3 class="text-xl font-semibold text-red-400">Ocorreu um erro no envio.</h3>
-<p class="mt-2 text-gray-300">Tente novamente em alguns minutos.</p>
-</div>
+<div id="success-msg" class="hidden text-center mt-10"><h3 class="text-xl font-semibold text-[#1DE9B6]">Recebemos seus dados!</h3><p class="mt-2 text-gray-300">Nossa equipe entrará em contato em breve.</p><div class="mt-4 flex justify-center"><a href="#home" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200 hover:bg-white/10 transition">Voltar ao site</a></div></div>
+<div id="error-msg" class="hidden text-center mt-10"><h3 class="text-xl font-semibold text-red-400">Ocorreu um erro.</h3><p class="mt-2 text-gray-300">Tente novamente em alguns minutos.</p></div>
 </main>
-
-<footer class="mt-16 text-center text-gray-500 text-sm border-t border-white/10 pt-6">
-© N1 Inteligência Digital — Todos os direitos reservados.
-</footer>
+<footer class="mt-16 text-center text-gray-500 text-sm border-t border-white/10 pt-6">© N1 Inteligência Digital — Todos os direitos reservados.</footer>
 </section>
 
 <footer class="border-t border-slate-700">
@@ -339,10 +223,8 @@ const icon = btn.querySelector('span:last-child');
 if (icon) icon.textContent = expanded ? '+' : '−';
 });
 });
-
 const capturaSection = document.getElementById('captura');
 const homeMain = document.getElementById('home');
-
 function syncHash() {
 if (location.hash === '#captura') {
 capturaSection.classList.remove('hidden-section');
@@ -355,7 +237,6 @@ homeMain.style.display = '';
 }
 window.addEventListener('hashchange', syncHash);
 syncHash();
-
 const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime();
 const elDays = document.getElementById('cd-days');
 const elHours = document.getElementById('cd-hours');
@@ -363,32 +244,26 @@ const elMin = document.getElementById('cd-minutes');
 const elSec = document.getElementById('cd-seconds');
 const elEnded = document.getElementById('cd-ended');
 const box = document.getElementById('countdown');
-
 function updateCountdown() {
 const now = Date.now();
 let diff = target - now;
-
 if (diff <= 0) {
 if(box) box.classList.add('hidden');
 if(elEnded) elEnded.classList.remove('hidden');
 clearInterval(timer);
 return;
 }
-
 const d = Math.floor(diff / (1000 * 60 * 60 * 24));
 const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
 const m = Math.floor((diff / (1000 * 60)) % 60);
 const s = Math.floor((diff / 1000) % 60);
-
 if(elDays) elDays.textContent = String(d).padStart(2, '0');
 if(elHours) elHours.textContent = String(h).padStart(2, '0');
 if(elMin) elMin.textContent = String(m).padStart(2, '0');
 if(elSec) elSec.textContent = String(s).padStart(2, '0');
 }
-
 const timer = setInterval(updateCountdown, 1000);
 updateCountdown();
-
 const btn = document.querySelector('#captura .btn-glow');
 if (btn) {
 btn.addEventListener('pointermove', (e) => {
@@ -399,11 +274,9 @@ btn.style.setProperty('--x', x + '%');
 btn.style.setProperty('--y', y + '%');
 });
 }
-
 const form = document.getElementById('diagnostico-form');
 const successMsg = document.getElementById('success-msg');
 const errorMsg = document.getElementById('error-msg');
-
 if (form) {
 form.addEventListener('submit', async (e) => {
 e.preventDefault();
@@ -417,7 +290,6 @@ company: data.get('company') || '',
 source: 'landing-n1-inteligencia-digital',
 timestamp: new Date().toISOString()
 };
-
 try {
 const res = await fetch(form.action, {
 method: 'POST',
@@ -439,6 +311,7 @@ errorMsg.classList.remove('hidden');
 const sphereContainer = document.getElementById("sphere-container");
 
 if (sphereContainer) {
+    const isMobile = window.innerWidth < 768;
     const canvas = document.getElementById("bg-canvas");
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -450,7 +323,7 @@ if (sphereContainer) {
       0.1,
       100
     );
-    camera.position.z = 4;
+    camera.position.z = isMobile ? 3.5 : 4; // Câmera um pouco mais longe no mobile
 
     const vertexShader = `
       uniform float uTime;
@@ -469,9 +342,14 @@ if (sphereContainer) {
         n = 0.5 + 0.5 * n;
         float breathing = 0.5 + 0.5 * sin(uTime * 0.7);
         float displacement = (n * 0.7 + breathing * 0.3) * uNoiseAmp;
-        vec3 mouseDir = normalize(vec3(uMouse, 1.0));
-        float mouseEffect = dot(normalize(pos), mouseDir);
-        displacement += mouseEffect * uMouseStrength;
+        
+        // Desativa a interação do mouse no mobile
+        if (uMouseStrength > 0.0) {
+          vec3 mouseDir = normalize(vec3(uMouse, 1.0));
+          float mouseEffect = dot(normalize(pos), mouseDir);
+          displacement += mouseEffect * uMouseStrength;
+        }
+        
         vec3 newPos = pos + normal * displacement;
         vNoise = n;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
@@ -500,11 +378,12 @@ if (sphereContainer) {
       }
     `;
 
-    const geometry = new THREE.SphereGeometry(1.0, 200, 200); // **ESFERA DIMINUÍDA**
+    // **ESFERA DIMINUÍDA AINDA MAIS**
+    const geometry = new THREE.SphereGeometry(0.8, 200, 200); 
     const uniforms = {
       uTime:          { value: 0 },
       uNoiseAmp:      { value: 0.7 },
-      uMouseStrength: { value: 0.3 },
+      uMouseStrength: { value: isMobile ? 0.0 : 0.3 }, // Desativa força do mouse no mobile
       uMouse:         { value: new THREE.Vector2(0.0, 0.0) }
     };
 
@@ -520,12 +399,19 @@ if (sphereContainer) {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
 
+    // Ajuste de posição da esfera no mobile para ficar mais centralizada no eixo Y
+    if (isMobile) {
+        points.position.y = -0.5;
+    }
+
     const mouse = new THREE.Vector2(0, 0);
-    window.addEventListener("mousemove", (event) => {
-        const x = (event.clientX / window.innerWidth) * 2 - 1;
-        const y = -(event.clientY / window.innerHeight) * 2 + 1;
-        mouse.set(x, y);
-    });
+    if (!isMobile) {
+      window.addEventListener("mousemove", (event) => {
+          const x = (event.clientX / window.innerWidth) * 2 - 1;
+          const y = -(event.clientY / window.innerHeight) * 2 + 1;
+          mouse.set(x, y);
+      });
+    }
 
     function onResize() {
       const parent = renderer.domElement.parentElement;
@@ -547,7 +433,9 @@ if (sphereContainer) {
       requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
       uniforms.uTime.value = elapsed;
-      uniforms.uMouse.value.lerp(mouse, 0.05);
+      if(!isMobile) {
+          uniforms.uMouse.value.lerp(mouse, 0.05);
+      }
       points.rotation.y += 0.0015;
       points.rotation.x = Math.sin(elapsed * 0.15) * 0.05;
       renderer.render(scene, camera);
@@ -557,4 +445,4 @@ if (sphereContainer) {
 </script>
 
 </body>
-</html>
+</html>```
