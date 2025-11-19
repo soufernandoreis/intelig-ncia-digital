@@ -40,7 +40,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 #hero-section {
   position: relative;
   overflow: hidden;
-  background-color: #0F172A; /* Cor de fundo escura base */
+  background-color: #0F172A;
 }
 #sphere-container {
   position: absolute;
@@ -64,7 +64,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 <body class="bg-slate-900 text-slate-200 antialiased">
 
 <!-- CABEÇALHO TRANSPARENTE SOBRE A SEÇÃO HERO -->
-<header class="absolute top-0 left-0 right-0 z-50">
+<header id="main-header" class="absolute top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
     <nav class="hidden md:flex items-center gap-2 text-sm">
@@ -73,7 +73,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
       <a href="#captura" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Dúvidas</a>
       <a href="#captura" class="ml-2 inline-flex items-center rounded-full px-4 py-2 font-semibold text-slate-900 bg-white hover:bg-slate-200 shadow">Agende uma consulta</a>
     </nav>
-    <button class="md:hidden inline-flex items-center rounded-lg border border-slate-600 px-3 py-1.5 text-white">Menu</button>
+    <!-- BOTÃO DE MENU MOBILE REMOVIDO -->
   </div>
 </header>
 
@@ -142,7 +142,7 @@ A N1 Inteligência Digital é para você se…
 
 <section id="captura" class="hidden-section min-h-screen bg-gradient-to-b from-[#0a0f0f] via-[#0e1414] to-[#0a0f0f] text-gray-100">
 <header class="border-b border-white/10">
-<div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 <h1 class="text-2xl font-semibold tracking-tight text-[#1DE9B6]">N1 Inteligência Digital</h1>
 <a href="#home" class="text-sm text-gray-400 hover:text-[#1DE9B6] transition">Voltar</a>
 </div>
@@ -180,8 +180,22 @@ A N1 Inteligência Digital é para você se…
 <script>
 // Scripts da Landing Page Original (Accordion, Navegação, Formulário)
 document.querySelectorAll('.accordion-trigger').forEach(btn=>{btn.addEventListener('click',()=>{const panel=btn.nextElementSibling;const expanded=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!expanded));panel.classList.toggle('hidden');const icon=btn.querySelector('span:last-child');if(icon)icon.textContent=expanded?'+':'−';});});
-const capturaSection=document.getElementById('captura');const homeMain=document.getElementById('home');
-function syncHash(){if(location.hash==='#captura'){capturaSection.classList.remove('hidden-section');homeMain.style.display='none';window.scrollTo({top:0});}else{capturaSection.classList.add('hidden-section');homeMain.style.display='';}}
+const capturaSection=document.getElementById('captura');
+const homeMain=document.getElementById('home');
+const mainHeader = document.getElementById('main-header'); // CORREÇÃO: Encontra o header principal
+
+function syncHash(){
+  if(location.hash==='#captura'){
+    capturaSection.classList.remove('hidden-section');
+    homeMain.style.display='none';
+    if(mainHeader) mainHeader.style.display = 'none'; // CORREÇÃO: Esconde o header principal
+    window.scrollTo({top:0});
+  } else {
+    capturaSection.classList.add('hidden-section');
+    homeMain.style.display='';
+    if(mainHeader) mainHeader.style.display = ''; // CORREÇÃO: Mostra o header principal novamente
+  }
+}
 window.addEventListener('hashchange',syncHash);syncHash();
 const btn=document.querySelector('#captura .btn-glow');if(btn){btn.addEventListener('pointermove',(e)=>{const r=btn.getBoundingClientRect();const x=((e.clientX-r.left)/r.width)*100;const y=((e.clientY-r.top)/r.height)*100;btn.style.setProperty('--x',x+'%');btn.style.setProperty('--y',y+'%');});}
 const form=document.getElementById('diagnostico-form');const successMsg=document.getElementById('success-msg');const errorMsg=document.getElementById('error-msg');
@@ -210,8 +224,7 @@ if (sphereContainer) {
     const vertexShader=`uniform float uTime;uniform float uNoiseAmp;uniform float uMouseStrength;uniform vec2 uMouse;varying float vNoise;float hash(vec3 p){return sin(dot(p,vec3(17.1,31.7,11.3))+uTime*0.6);}void main(){vec3 pos=position;float n=hash(normal*3.0+pos*2.0);n=0.5+0.5*n;float breathing=0.5+0.5*sin(uTime*0.7);float displacement=(n*0.7+breathing*0.3)*uNoiseAmp;if(uMouseStrength>0.0){vec3 mouseDir=normalize(vec3(uMouse,1.0));float mouseEffect=dot(normalize(pos),mouseDir);displacement+=mouseEffect*uMouseStrength;}vec3 newPos=pos+normal*displacement;vNoise=n;gl_Position=projectionMatrix*modelViewMatrix*vec4(newPos,1.0);gl_PointSize=2.0;}`;
     const fragmentShader=`varying float vNoise;void main(){float d=length(gl_PointCoord-0.5);if(d>0.5)discard;vec3 colorCore=vec3(0.5,0.5,0.5);vec3 colorEdge=vec3(0.8,0.8,0.8);vec3 colorGlow=vec3(1.0,1.0,1.0);float glow=smoothstep(0.0,0.4,vNoise);vec3 color=mix(colorCore,colorEdge,vNoise);color=mix(color,colorGlow,glow*0.35);float alpha=1.0-smoothstep(0.3,0.5,d);alpha*=(0.5+vNoise*0.5);gl_FragColor=vec4(color,alpha);}`;
 
-    // **ESFERA DIMINUÍDA PARA 0.2**
-    const sphereRadius = 0.2; 
+    const sphereRadius = isMobile ? 0.2 : 0.8; 
     const geometry = new THREE.SphereGeometry(sphereRadius, 200, 200); 
     
     const uniforms = {
@@ -233,8 +246,11 @@ if (sphereContainer) {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
     
-    // Posiciona a esfera acima do texto
-    points.position.y = 0.4; 
+    if (isMobile) {
+      points.position.y = 0.8; 
+    } else {
+      points.position.y = 0.4;
+    }
 
     const mouse = new THREE.Vector2(0, 0);
     if (!isMobile) {
