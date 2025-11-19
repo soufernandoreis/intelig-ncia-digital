@@ -98,7 +98,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
     <canvas id="bg-canvas"></canvas>
   </div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 md:py-32 flex items-center justify-center min-h-[60vh] md:min-h-[70vh]">
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 md:py-32 flex items-center justify-center min-h-[70vh] md:min-h-[80vh]">
     <div class="flex flex-col items-center text-center">
       <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
         Consultoria de IA que
@@ -323,7 +323,7 @@ if (sphereContainer) {
       0.1,
       100
     );
-    camera.position.z = isMobile ? 3.5 : 4; // Câmera um pouco mais longe no mobile
+    camera.position.z = 4;
 
     const vertexShader = `
       uniform float uTime;
@@ -331,25 +331,18 @@ if (sphereContainer) {
       uniform float uMouseStrength;
       uniform vec2  uMouse;
       varying float vNoise;
-
-      float hash(vec3 p) {
-        return sin(dot(p, vec3(17.1, 31.7, 11.3)) + uTime * 0.6);
-      }
-
+      float hash(vec3 p) { return sin(dot(p, vec3(17.1, 31.7, 11.3)) + uTime * 0.6); }
       void main() {
         vec3 pos = position;
         float n = hash(normal * 3.0 + pos * 2.0);
         n = 0.5 + 0.5 * n;
         float breathing = 0.5 + 0.5 * sin(uTime * 0.7);
         float displacement = (n * 0.7 + breathing * 0.3) * uNoiseAmp;
-        
-        // Desativa a interação do mouse no mobile
         if (uMouseStrength > 0.0) {
           vec3 mouseDir = normalize(vec3(uMouse, 1.0));
           float mouseEffect = dot(normalize(pos), mouseDir);
           displacement += mouseEffect * uMouseStrength;
         }
-        
         vec3 newPos = pos + normal * displacement;
         vNoise = n;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
@@ -359,31 +352,29 @@ if (sphereContainer) {
 
     const fragmentShader = `
       varying float vNoise;
-
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
         vec3 colorCore = vec3(0.5, 0.5, 0.5);
         vec3 colorEdge = vec3(0.8, 0.8, 0.8);
         vec3 colorGlow = vec3(1.0, 1.0, 1.0);
-        
         float glow = smoothstep(0.0, 0.4, vNoise);
         vec3 color = mix(colorCore, colorEdge, vNoise);
         color = mix(color, colorGlow, glow * 0.35);
-        
         float alpha = 1.0 - smoothstep(0.3, 0.5, d);
         alpha *= (0.5 + vNoise * 0.5);
-
         gl_FragColor = vec4(color, alpha);
       }
     `;
 
-    // **ESFERA DIMINUÍDA AINDA MAIS**
-    const geometry = new THREE.SphereGeometry(0.8, 200, 200); 
+    // **TAMANHO DIFERENTE PARA DESKTOP E MOBILE**
+    const sphereRadius = isMobile ? 0.6 : 1.0; 
+    const geometry = new THREE.SphereGeometry(sphereRadius, 200, 200); 
+    
     const uniforms = {
       uTime:          { value: 0 },
       uNoiseAmp:      { value: 0.7 },
-      uMouseStrength: { value: isMobile ? 0.0 : 0.3 }, // Desativa força do mouse no mobile
+      uMouseStrength: { value: isMobile ? 0.0 : 0.3 },
       uMouse:         { value: new THREE.Vector2(0.0, 0.0) }
     };
 
@@ -398,10 +389,10 @@ if (sphereContainer) {
 
     const points = new THREE.Points(geometry, material);
     scene.add(points);
-
-    // Ajuste de posição da esfera no mobile para ficar mais centralizada no eixo Y
+    
+    // **POSIÇÃO DIFERENTE PARA DESKTOP E MOBILE**
     if (isMobile) {
-        points.position.y = -0.5;
+      points.position.y = 0.8; // Sobe a esfera no mobile
     }
 
     const mouse = new THREE.Vector2(0, 0);
@@ -445,4 +436,4 @@ if (sphereContainer) {
 </script>
 
 </body>
-</html>```
+</html>
