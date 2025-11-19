@@ -18,11 +18,6 @@
 
 <style>
 html { scroll-behavior: smooth; }
-@keyframes alert-pulse {
-0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, .28); }
-50% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(239, 68, 68, .14); }
-}
-.countdown-box { animation: alert-pulse 2.2s ease-in-out infinite; }
 :root { color-scheme: dark; }
 @keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes aurora { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
@@ -45,6 +40,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 #hero-section {
   position: relative;
   overflow: hidden;
+  background-color: #0F172A; /* Cor de fundo escura base */
 }
 #sphere-container {
   position: absolute;
@@ -59,7 +55,6 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
   width: 100%;
   height: 100%;
 }
-/* ADICIONADO: Sombra no texto para legibilidade */
 .text-shadow {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
@@ -68,71 +63,40 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 
 <body class="bg-slate-900 text-slate-200 antialiased">
 
-<div class="sticky top-0 z-50">
-<div class="w-full bg-teal-900 text-white">
-<div class="max-w-6xl mx-auto px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-<p class="font-semibold">Últimos dias com desconto Black Friday</p>
-<div id="countdown" class="countdown-box inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold text-white bg-gradient-to-r from-[#ef4444] via-[#dc2626] to-[#b91c1c]">
-<span id="cd-days">00</span>d
-<span id="cd-hours">00</span>h
-<span id="cd-minutes">00</span>m
-<span id="cd-seconds">00</span>s
-</div>
-<span id="cd-ended" class="hidden font-semibold text-yellow-300">promoção encerrada</span>
-</div>
-</div>
-
-<header class="bg-slate-900/80 backdrop-blur border-b border-slate-700">
-<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-<a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
-<nav class="hidden md:flex items-center gap-6 text-sm">
-<a href="#modulos" class="hover:text-slate-300">Módulos por área</a>
-<a href="#final" class="hover:text-slate-300">Para quem é</a>
-<a href="#captura" class="inline-flex items-center rounded-lg px-4 py-2 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow">Agende sua Consulta</a>
-</nav>
-<button class="md:hidden inline-flex items-center rounded-lg border border-slate-600 px-3 py-1.5 text-white">Menu</button>
-</div>
+<!-- CABEÇALHO TRANSPARENTE SOBRE A SEÇÃO HERO -->
+<header class="absolute top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
+    <nav class="hidden md:flex items-center gap-2 text-sm">
+      <a href="#modulos" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Benefícios</a>
+      <a href="#final" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Planos</a>
+      <a href="#captura" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Dúvidas</a>
+      <a href="#captura" class="ml-2 inline-flex items-center rounded-full px-4 py-2 font-semibold text-slate-900 bg-white hover:bg-slate-200 shadow">Agende uma consulta</a>
+    </nav>
+    <button class="md:hidden inline-flex items-center rounded-lg border border-slate-600 px-3 py-1.5 text-white">Menu</button>
+  </div>
 </header>
-</div>
 
 <main id="home">
-<section id="hero-section" class="border-b border-slate-700">
+<section id="hero-section">
   
   <div id="sphere-container">
     <canvas id="bg-canvas"></canvas>
   </div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 md:py-32 flex items-center justify-center min-h-[70vh] md:min-h-[80vh]">
-    <div class="flex flex-col items-center text-center">
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white text-shadow">
-        Consultoria de IA que
-        <span class="text-teal-400"> organiza processos,</span>
-        <span class="text-teal-400"> automatiza a Gestão do seu negócio</span>
-        e
-        <span class="text-teal-400"> elimina tarefas repetitivas</span>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 flex flex-col justify-end min-h-screen">
+    <div class="pb-20 md:pb-24 max-w-3xl">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold leading-tight text-white text-shadow">
+        Organize os processos que fazem o seu negócio escalar
       </h1>
-
-      <p class="mt-4 text-lg text-slate-300 max-w-2xl text-shadow">
-        Projetos 100% personalizados para o sua empresa
-      </p>
-
-      <div class="mt-8 flex flex-wrap gap-4 items-start justify-center">
-        <div class="flex flex-col">
-          <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow-lg shadow-teal-900/50">Agende sua Consulta</a>
-          <span class="mt-1 text-xs text-slate-400 text-center">consultoria grátis</span>
-        </div>
-        <div class="flex flex-col">
-          <a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold border border-slate-600 bg-slate-800/50 hover:bg-slate-800 text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-400" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/></svg>
-            WhatsApp
-          </a>
-          <span class="mt-1 text-xs text-slate-400 text-center">fale diretamente comigo</span>
-        </div>
-      </div>
+      <h2 class="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl text-shadow">
+        Inteligência Artificial para negócios do Digital
+      </h2>
     </div>
   </div>
 </section>
 
+<!-- RESTANTE DO CONTEÚDO DA PÁGINA -->
 <section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
 <h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-700 pb-4 text-white">
 Nossos Módulos de IA por Área
@@ -142,7 +106,6 @@ Módulos que prospectam e atendem clientes, integrados a WhatsApp, Instagram, CR
 </p>
 
 <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <!-- Módulos aqui... -->
   <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Atendimento ao Cliente<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Automação de Agendamentos e Respostas</li><li>Suporte 24/7 e Personalização</li><li>Qualificação de Leads</li></ul></div></div>
   <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Financeiro e Cobrança<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Lembretes de Pagamento Automatizados</li><li>Geração e Gestão de Faturas</li><li>Redução de Inadimplência</li></ul></div></div>
   <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Análise de Dados<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Relatórios e Insights em Tempo Real</li><li>Decisões Baseadas em Dados</li><li>Previsão e Modelagem Preditiva</li></ul></div></div>
@@ -188,7 +151,7 @@ A N1 Inteligência Digital é para você se…
 <h2 class="text-3xl sm:text-4xl font-bold text-center text-white">Mentoria e Automação para quem quer crescer com Inteligência Digital</h2>
 <p class="mt-3 text-center text-gray-400">Preencha o formulário para receber um diagnóstico personalizado.</p>
 <div class="bg-[#1c2424]/90 rounded-2xl border border-white/10 shadow-2xl mt-10 p-8 backdrop-blur-md" style="animation: floatIn .6s cubic-bezier(.2,.8,.2,1) both;">
-<form id="diagnostico-form" action="https://n8n-n8n-start.bgjw54.easypanel.host/webhook/fernandoreis" method="POST" class="space-y-5">
+<form id="diagnostico-form" action="https-n8n-n8n-start.bgjw54.easypanel.host/webhook/fernandoreis" method="POST" class="space-y-5">
 <input name="first_name" placeholder="Nome*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
 <input name="last_name" placeholder="Sobrenome*" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
 <input name="phone_number" type="tel" placeholder="+55 (DDD) 99999-9999" required class="w-full bg-transparent border border-white/20 rounded-lg p-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-[#1DE9B6] transition" />
@@ -204,7 +167,7 @@ A N1 Inteligência Digital é para você se…
 </section>
 
 <footer class="border-t border-slate-700">
-<div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="max-w-7xl mx-auto px-6 py-8 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
 <p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
 <nav class="flex gap-4">
 <a href="#" class="hover:text-slate-200">Privacidade</a>
@@ -215,99 +178,14 @@ A N1 Inteligência Digital é para você se…
 
 <!-- SCRIPT COMBINADO -->
 <script>
-// Scripts da Landing Page Original
-// ... (código do accordion, hashchange, countdown, etc. mantido aqui) ...
-document.querySelectorAll('.accordion-trigger').forEach(btn => {
-btn.addEventListener('click', () => {
-const panel = btn.nextElementSibling;
-const expanded = btn.getAttribute('aria-expanded') === 'true';
-btn.setAttribute('aria-expanded', String(!expanded));
-panel.classList.toggle('hidden');
-const icon = btn.querySelector('span:last-child');
-if (icon) icon.textContent = expanded ? '+' : '−';
-});
-});
-const capturaSection = document.getElementById('captura');
-const homeMain = document.getElementById('home');
-function syncHash() {
-if (location.hash === '#captura') {
-capturaSection.classList.remove('hidden-section');
-homeMain.style.display = 'none';
-window.scrollTo({ top: 0 });
-} else {
-capturaSection.classList.add('hidden-section');
-homeMain.style.display = '';
-}
-}
-window.addEventListener('hashchange', syncHash);
-syncHash();
-const target = new Date(new Date().getFullYear(), 10, 28, 23, 59, 0).getTime();
-const elDays = document.getElementById('cd-days');
-const elHours = document.getElementById('cd-hours');
-const elMin = document.getElementById('cd-minutes');
-const elSec = document.getElementById('cd-seconds');
-const elEnded = document.getElementById('cd-ended');
-const box = document.getElementById('countdown');
-function updateCountdown() {
-const now = Date.now();
-let diff = target - now;
-if (diff <= 0) {
-if(box) box.classList.add('hidden');
-if(elEnded) elEnded.classList.remove('hidden');
-clearInterval(timer);
-return;
-}
-const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-const m = Math.floor((diff / (1000 * 60)) % 60);
-const s = Math.floor((diff / 1000) % 60);
-if(elDays) elDays.textContent = String(d).padStart(2, '0');
-if(elHours) elHours.textContent = String(h).padStart(2, '0');
-if(elMin) elMin.textContent = String(m).padStart(2, '0');
-if(elSec) elSec.textContent = String(s).padStart(2, '0');
-}
-const timer = setInterval(updateCountdown, 1000);
-updateCountdown();
-const btn = document.querySelector('#captura .btn-glow');
-if (btn) {
-btn.addEventListener('pointermove', (e) => {
-const r = btn.getBoundingClientRect();
-const x = ((e.clientX - r.left) / r.width) * 100;
-const y = ((e.clientY - r.top) / r.height) * 100;
-btn.style.setProperty('--x', x + '%');
-btn.style.setProperty('--y', y + '%');
-});
-}
-const form = document.getElementById('diagnostico-form');
-const successMsg = document.getElementById('success-msg');
-const errorMsg = document.getElementById('error-msg');
-if (form) {
-form.addEventListener('submit', async (e) => {
-e.preventDefault();
-const data = new FormData(form);
-const payload = {
-first_name: data.get('first_name') || '',
-last_name: data.get('last_name') || '',
-phone_number: data.get('phone_number') || '',
-email: data.get('email') || '',
-company: data.get('company') || '',
-source: 'landing-n1-inteligencia-digital',
-timestamp: new Date().toISOString()
-};
-try {
-const res = await fetch(form.action, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify(payload)
-});
-if (!res.ok) throw new Error('Erro no envio');
-form.parentElement.classList.add('hidden');
-successMsg.classList.remove('hidden');
-} catch (err) {
-errorMsg.classList.remove('hidden');
-}
-});
-}
+// Scripts da Landing Page Original (Accordion, Navegação, Formulário)
+document.querySelectorAll('.accordion-trigger').forEach(btn=>{btn.addEventListener('click',()=>{const panel=btn.nextElementSibling;const expanded=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!expanded));panel.classList.toggle('hidden');const icon=btn.querySelector('span:last-child');if(icon)icon.textContent=expanded?'+':'−';});});
+const capturaSection=document.getElementById('captura');const homeMain=document.getElementById('home');
+function syncHash(){if(location.hash==='#captura'){capturaSection.classList.remove('hidden-section');homeMain.style.display='none';window.scrollTo({top:0});}else{capturaSection.classList.add('hidden-section');homeMain.style.display='';}}
+window.addEventListener('hashchange',syncHash);syncHash();
+const btn=document.querySelector('#captura .btn-glow');if(btn){btn.addEventListener('pointermove',(e)=>{const r=btn.getBoundingClientRect();const x=((e.clientX-r.left)/r.width)*100;const y=((e.clientY-r.top)/r.height)*100;btn.style.setProperty('--x',x+'%');btn.style.setProperty('--y',y+'%');});}
+const form=document.getElementById('diagnostico-form');const successMsg=document.getElementById('success-msg');const errorMsg=document.getElementById('error-msg');
+if(form){form.addEventListener('submit',async(e)=>{e.preventDefault();const data=new FormData(form);const payload={first_name:data.get('first_name')||'',last_name:data.get('last_name')||'',phone_number:data.get('phone_number')||'',email:data.get('email')||'',company:data.get('company')||'',source:'landing-n1-inteligencia-digital',timestamp:new Date().toISOString()};try{const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!res.ok)throw new Error('Erro no envio');form.parentElement.classList.add('hidden');successMsg.classList.remove('hidden');}catch(err){errorMsg.classList.remove('hidden');}});}
 
 // ==========================================================
 // INÍCIO DO SCRIPT DA ANIMAÇÃO 3D
@@ -329,50 +207,11 @@ if (sphereContainer) {
     );
     camera.position.z = 4;
 
-    const vertexShader = `
-      uniform float uTime;
-      uniform float uNoiseAmp;
-      uniform float uMouseStrength;
-      uniform vec2  uMouse;
-      varying float vNoise;
-      float hash(vec3 p) { return sin(dot(p, vec3(17.1, 31.7, 11.3)) + uTime * 0.6); }
-      void main() {
-        vec3 pos = position;
-        float n = hash(normal * 3.0 + pos * 2.0);
-        n = 0.5 + 0.5 * n;
-        float breathing = 0.5 + 0.5 * sin(uTime * 0.7);
-        float displacement = (n * 0.7 + breathing * 0.3) * uNoiseAmp;
-        if (uMouseStrength > 0.0) {
-          vec3 mouseDir = normalize(vec3(uMouse, 1.0));
-          float mouseEffect = dot(normalize(pos), mouseDir);
-          displacement += mouseEffect * uMouseStrength;
-        }
-        vec3 newPos = pos + normal * displacement;
-        vNoise = n;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
-        gl_PointSize = 2.0;
-      }
-    `;
+    const vertexShader=`uniform float uTime;uniform float uNoiseAmp;uniform float uMouseStrength;uniform vec2 uMouse;varying float vNoise;float hash(vec3 p){return sin(dot(p,vec3(17.1,31.7,11.3))+uTime*0.6);}void main(){vec3 pos=position;float n=hash(normal*3.0+pos*2.0);n=0.5+0.5*n;float breathing=0.5+0.5*sin(uTime*0.7);float displacement=(n*0.7+breathing*0.3)*uNoiseAmp;if(uMouseStrength>0.0){vec3 mouseDir=normalize(vec3(uMouse,1.0));float mouseEffect=dot(normalize(pos),mouseDir);displacement+=mouseEffect*uMouseStrength;}vec3 newPos=pos+normal*displacement;vNoise=n;gl_Position=projectionMatrix*modelViewMatrix*vec4(newPos,1.0);gl_PointSize=2.0;}`;
+    const fragmentShader=`varying float vNoise;void main(){float d=length(gl_PointCoord-0.5);if(d>0.5)discard;vec3 colorCore=vec3(0.5,0.5,0.5);vec3 colorEdge=vec3(0.8,0.8,0.8);vec3 colorGlow=vec3(1.0,1.0,1.0);float glow=smoothstep(0.0,0.4,vNoise);vec3 color=mix(colorCore,colorEdge,vNoise);color=mix(color,colorGlow,glow*0.35);float alpha=1.0-smoothstep(0.3,0.5,d);alpha*=(0.5+vNoise*0.5);gl_FragColor=vec4(color,alpha);}`;
 
-    const fragmentShader = `
-      varying float vNoise;
-      void main() {
-        float d = length(gl_PointCoord - 0.5);
-        if (d > 0.5) discard;
-        vec3 colorCore = vec3(0.5, 0.5, 0.5);
-        vec3 colorEdge = vec3(0.8, 0.8, 0.8);
-        vec3 colorGlow = vec3(1.0, 1.0, 1.0);
-        float glow = smoothstep(0.0, 0.4, vNoise);
-        vec3 color = mix(colorCore, colorEdge, vNoise);
-        color = mix(color, colorGlow, glow * 0.35);
-        float alpha = 1.0 - smoothstep(0.3, 0.5, d);
-        alpha *= (0.5 + vNoise * 0.5);
-        gl_FragColor = vec4(color, alpha);
-      }
-    `;
-
-    // **TAMANHO 0.2 PARA MOBILE, 0.8 PARA DESKTOP**
-    const sphereRadius = isMobile ? 0.2 : 0.8; 
+    // **ESFERA DIMINUÍDA PARA 0.2**
+    const sphereRadius = 0.2; 
     const geometry = new THREE.SphereGeometry(sphereRadius, 200, 200); 
     
     const uniforms = {
@@ -394,10 +233,8 @@ if (sphereContainer) {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
     
-    // POSIÇÃO DIFERENTE PARA DESKTOP E MOBILE
-    if (isMobile) {
-      points.position.y = 0.8; 
-    }
+    // Posiciona a esfera acima do texto
+    points.position.y = 0.4; 
 
     const mouse = new THREE.Vector2(0, 0);
     if (!isMobile) {
