@@ -18,7 +18,10 @@
 
 <style>
 html { scroll-behavior: smooth; }
-:root { color-scheme: dark; }
+/* Aqui você pode manter o color-scheme dark para a parte superior, se quiser */
+/* ou remover para que o navegador não force temas escuros onde não deve */
+/* :root { color-scheme: dark; } */ 
+
 @keyframes floatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes aurora { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes sweep { 0% { transform: translateX(-120%); opacity: 0; } 50% { opacity: .7; } 100% { transform: translateX(120%); opacity: 0; } }
@@ -40,7 +43,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 #hero-section {
   position: relative;
   overflow: hidden;
-  background-color: #0F172A;
+  background-color: #0F172A; /* Cor de fundo original da seção hero */
 }
 #sphere-container {
   position: absolute;
@@ -58,6 +61,53 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
 .text-shadow {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
+
+/* Estilo para a nova seção com fundo branco */
+.white-bg-section {
+    background-color: #FFFFFF; /* Fundo branco */
+    color: #333333; /* Cor do texto padrão para o fundo claro */
+    padding-top: 80px; /* Adiciona um padding para a transição */
+    padding-bottom: 80px;
+}
+
+/* Ajustes para textos dentro da seção branca */
+.white-bg-section h2,
+.white-bg-section h3,
+.white-bg-section p {
+    color: #333333; /* Escuro para legibilidade no fundo branco */
+}
+
+/* Estilo para a seta SVG */
+.arrow-svg {
+    transform: rotate(15deg); /* Ajuste a rotação conforme necessário para direcionar */
+}
+
+/* Estilo para o card de negligência */
+.negligence-card {
+    background-color: #2E8B57; /* Um tom de verde */
+    color: #FFFFFF; /* Texto branco */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(46, 139, 87, 0.7); /* Sombra mais complexa */
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 300px; /* Largura máxima do card */
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Classes para cores específicas para a seção branca */
+.text-dark-h2 {
+    color: #1a202c !important; /* Tailwind gray-900 */
+}
+.text-dark-p {
+    color: #4a5568 !important; /* Tailwind gray-700 */
+}
+.text-dark-h3 {
+    color: #2d3748 !important; /* Tailwind gray-800 */
+}
+.border-dark-section {
+    border-color: #a0aec0 !important; /* Tailwind gray-400 */
+}
 </style>
 </head>
 
@@ -67,6 +117,7 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
     <nav class="hidden md:flex items-center gap-2 text-sm">
+      <a href="#problem-section" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">O problema</a> <!-- Link para a nova seção -->
       <a href="#modulos" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Benefícios</a>
       <a href="#final" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Planos</a>
       <a href="#captura" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Dúvidas</a>
@@ -110,45 +161,68 @@ transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
   </div>
 </section>
 
-<!-- RESTANTE DO CONTEÚDO DA PÁGINA -->
-<section id="modulos" class="max-w-6xl mx-auto px-6 py-16">
-<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-700 pb-4 text-white">
+<!-- NOVA SEÇÃO COM TEXTO, SETA E CARD - A PARTIR DAQUI O FUNDO É BRANCO -->
+<section id="problem-section" class="white-bg-section">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-10">
+        <p class="text-xl md:text-2xl font-semibold max-w-lg text-dark-p text-center md:text-left">
+            “Você trabalha duro, chega antes de todo mundo e é sempre o último a ir embora. Faz o possível para manter tudo sob controle… mas, no fim, a sensação é de que nada realmente está nas suas mãos.”
+        </p>
+        <div class="flex items-center gap-5">
+            <!-- Seta SVG -->
+            <svg class="arrow-svg w-24 h-24 sm:w-32 sm:h-32 text-gray-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <!-- Card de Negligência -->
+            <div class="negligence-card">
+                Você negligencia nos números financeiros. Negligencia o custo por aquisição de cliente. Negligencia os fatores de alavancagem do seu negócio.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESTANTE DO CONTEÚDO DA PÁGINA (agora com cores adaptadas para fundo branco) -->
+<section id="modulos" class="white-bg-section pt-0"> <!-- Remove o padding-top duplicado -->
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-dark-section pb-4 text-dark-h2">
 Nossos Módulos de IA por Área
 </h2>
-<p class="mt-3 text-slate-300">
+<p class="mt-3 text-dark-p">
 Módulos que prospectam e atendem clientes, integrados a WhatsApp, Instagram, CRM e ERP.
 </p>
 <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Atendimento ao Cliente<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Automação de Agendamentos e Respostas</li><li>Suporte 24/7 e Personalização</li><li>Qualificação de Leads</li></ul></div></div>
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Financeiro e Cobrança<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Lembretes de Pagamento Automatizados</li><li>Geração e Gestão de Faturas</li><li>Redução de Inadimplência</li></ul></div></div>
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Análise de Dados<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Relatórios e Insights em Tempo Real</li><li>Decisões Baseadas em Dados</li><li>Previsão e Modelagem Preditiva</li></ul></div></div>
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Otimização de Processos<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Automação de Tarefas Repetitivas</li><li>Redução de Erros Operacionais</li><li>Otimização de Fluxos de Trabalho</li></ul></div></div>
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Recrutamento e RH<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Triagem Inteligente de Candidatos</li><li>Automação de Entrevistas</li><li>Otimização da Experiência do Colaborador</li></ul></div></div>
-  <div class="rounded-xl border border-slate-700 bg-slate-800"><button class="w-full text-left px-5 py-4 font-semibold text-white flex justify-between items-center accordion-trigger" aria-expanded="false">Marketing e Conteúdo<span class="ml-3 text-slate-400">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-slate-300 space-y-1"><li>Criação Automatizada de Conteúdo</li><li>Otimização de Campanhas</li><li>Análise de Performance de Marketing</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Atendimento ao Cliente<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Automação de Agendamentos e Respostas</li><li>Suporte 24/7 e Personalização</li><li>Qualificação de Leads</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Financeiro e Cobrança<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Lembretes de Pagamento Automatizados</li><li>Geração e Gestão de Faturas</li><li>Redução de Inadimplência</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Análise de Dados<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Relatórios e Insights em Tempo Real</li><li>Decisões Baseadas em Dados</li><li>Previsão e Modelagem Preditiva</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Otimização de Processos<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Automação de Tarefas Repetitivas</li><li>Redução de Erros Operacionais</li><li>Otimização de Fluxos de Trabalho</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Recrutamento e RH<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Triagem Inteligente de Candidatos</li><li>Automação de Entrevistas</li><li>Otimização da Experiência do Colaborador</li></ul></div></div>
+  <div class="rounded-xl border border-gray-300 bg-gray-50"><button class="w-full text-left px-5 py-4 font-semibold text-dark-h3 flex justify-between items-center accordion-trigger" aria-expanded="false">Marketing e Conteúdo<span class="ml-3 text-gray-500">+</span></button><div class="px-5 pb-4 hidden"><ul class="list-disc pl-5 text-dark-p space-y-1"><li>Criação Automatizada de Conteúdo</li><li>Otimização de Campanhas</li><li>Análise de Performance de Marketing</li></ul></div></div>
 </div>
 
 <div class="mt-8">
 <a href="#captura" class="inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow">Agende sua Consulta</a>
-<div class="text-xs text-slate-400 mt-1">consultoria grátis</div>
+<div class="text-xs text-dark-p mt-1">consultoria grátis</div>
+</div>
 </div>
 </section>
 
-<section id="final" class="max-w-6xl mx-auto px-6 py-16">
-<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-slate-700 pb-4 text-white">
+<section id="final" class="white-bg-section pt-0"> <!-- Remove o padding-top duplicado -->
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="font-serif text-3xl sm:text-4xl font-bold border-b border-dark-section pb-4 text-dark-h2">
 A N1 Inteligência Digital é para você se…
 </h2>
 
 <div class="mt-8 grid md:grid-cols-2 gap-6">
-  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Ainda responde clientes manualmente?</h3><p class="mt-2 text-slate-300">Seu atendimento fica disponível 24/7 com automação inteligente.</p></div>
-  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Leads somem por falta de resposta rápida?</h3><p class="mt-2 text-slate-300">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p></div>
-  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Seu financeiro sente o peso dos atrasos?</h3><p class="mt-2 text-slate-300">Cobrança e lembretes automáticos reduzem inadimplência.</p></div>
-  <div class="p-6 rounded-xl border border-slate-700 bg-slate-800"><h3 class="font-semibold text-white">Sua equipe gasta tempo com tarefas repetitivas?</h3><p class="mt-2 text-slate-300">A IA cuida do operacional para o time focar no estratégico.</p></div>
+  <div class="p-6 rounded-xl border border-gray-300 bg-gray-50"><h3 class="font-semibold text-dark-h3">Ainda responde clientes manualmente?</h3><p class="mt-2 text-dark-p">Seu atendimento fica disponível 24/7 com automação inteligente.</p></div>
+  <div class="p-6 rounded-xl border border-gray-300 bg-gray-50"><h3 class="font-semibold text-dark-h3">Leads somem por falta de resposta rápida?</h3><p class="mt-2 text-dark-p">A IA qualifica, responde e agenda reuniões sem esperar ninguém.</p></div>
+  <div class="p-6 rounded-xl border border-gray-300 bg-gray-50"><h3 class="font-semibold text-dark-h3">Seu financeiro sente o peso dos atrasos?</h3><p class="mt-2 text-dark-p">Cobrança e lembretes automáticos reduzem inadimplência.</p></div>
+  <div class="p-6 rounded-xl border border-gray-300 bg-gray-50"><h3 class="font-semibold text-dark-h3">Sua equipe gasta tempo com tarefas repetitivas?</h3><p class="mt-2 text-dark-p">A IA cuida do operacional para o time focar no estratégico.</p></div>
 </div>
 
 <div id="cta" class="mt-10">
-<h3 class="text-xl font-semibold text-white">Receba um plano personalizado de IA para automatizar sua empresa</h3>
+<h3 class="text-xl font-semibold text-dark-h3">Receba um plano personalizado de IA para automatizar sua empresa</h3>
 <a href="#captura" class="mt-4 inline-flex items-center rounded-lg px-5 py-3 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow">Agende sua Consulta</a>
-<div class="text-xs text-slate-400 mt-1">consultoria grátis</div>
+<div class="text-xs text-dark-p mt-1">consultoria grátis</div>
+</div>
 </div>
 </section>
 </main>
@@ -174,12 +248,24 @@ A N1 Inteligência Digital é para você se…
 <footer class="mt-16 text-center text-gray-500 text-sm border-t border-white/10 pt-6">© N1 Inteligência Digital — Todos os direitos reservados.</footer>
 </section>
 
-<footer class="border-t border-slate-700">
+<!-- Footer da parte escura original (mantido para a seção de captura, se for usada) -->
+<!-- <footer class="border-t border-slate-700">
 <div class="max-w-7xl mx-auto px-6 py-8 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
 <p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
 <nav class="flex gap-4">
 <a href="#" class="hover:text-slate-200">Privacidade</a>
 <a href="#" class="hover:text-slate-200">Termos</a>
+</nav>
+</div>
+</footer> -->
+
+<!-- Novo footer para a seção branca -->
+<footer class="border-t border-gray-300 bg-white">
+<div class="max-w-7xl mx-auto px-6 py-8 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-4">
+<p>© N1 Inteligência Digital — Todos os direitos reservados.</p>
+<nav class="flex gap-4">
+<a href="#" class="hover:text-gray-700">Privacidade</a>
+<a href="#" class="hover:text-gray-700">Termos</a>
 </nav>
 </div>
 </footer>
