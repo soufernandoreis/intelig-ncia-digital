@@ -1,152 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
-<meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
-<meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
-<meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
-<meta property="og:type" content="website" />
-<meta property="og:locale" content="pt_BR" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
+  <meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
+  <meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
+  <meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
-<!-- ANIMAÇÃO 3D: Three.js -->
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    :root { color-scheme: dark; }
 
-<style>
-html { scroll-behavior: smooth; }
-:root { color-scheme: dark; }
+    .btn-glow {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+    }
+    .btn-glow::before {
+      content:""; position:absolute; inset:-2px; border-radius:12px;
+      background:
+        radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%),
+        conic-gradient(from 0deg at 50% 50%, #1DE9B6,#14CBA8,#19E2D7,#1DE9B6);
+      filter:blur(16px) saturate(1.2);
+      z-index:-1;
+      animation:aurora 6s linear infinite;
+      opacity:.7;
+    }
 
-@keyframes floatIn { 
-  from { opacity: 0; transform: translateY(14px) scale(.98); } 
-  to   { opacity: 1; transform: translateY(0) scale(1); } 
-}
-@keyframes aurora { 
-  0%   { transform: translate(-50%,-50%) rotate(0deg); } 
-  100% { transform: translate(-50%,-50%) rotate(360deg); } 
-}
-@keyframes sweep { 
-  0%   { transform: translateX(-120%); opacity: 0; } 
-  50%  { opacity: .7; } 
-  100% { transform: translateX(120%); opacity: 0; } 
-}
+    @keyframes aurora {
+      0% { transform: translate(-50%,-50%) rotate(0deg); }
+      100% { transform: translate(-50%,-50%) rotate(360deg); }
+    }
 
-.btn-glow { 
-  position: relative; 
-  isolation: isolate; 
-  overflow: hidden; 
-  box-shadow: 0 8px 28px rgba(0,0,0,.35); 
-}
-.btn-glow::before {
-  content:""; position:absolute; inset:-2px; border-radius:12px;
-  background:
-    radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%),
-    conic-gradient(from 0deg at 50% 50%, #1DE9B6,#14CBA8,#19E2D7,#1DE9B6);
-  filter:blur(16px) saturate(1.2);
-  z-index:-1;
-  animation:aurora 6s linear infinite;
-  opacity:.7;
-}
-.btn-glow::after {
-  content:""; position:absolute; top:0; bottom:0; width:40%; left:-40%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
-  transform:translateX(-120%);
-  transition:transform .6s ease; pointer-events:none;
-}
-.btn-glow:hover::after { animation:sweep .9s ease forwards; }
-
-.focus-ring:focus { 
-  outline:none; 
-  box-shadow:0 0 0 3px rgba(29,233,182,.45); 
-}
-
-.hidden-section { display:none; }
-
-#hero-section {
-  position: relative;
-  overflow: hidden;
-  background-color: #0F172A;
-}
-#sphere-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-#bg-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.text-shadow {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-}
-</style>
+    #hero-section {
+      position: relative;
+      overflow: hidden;
+      background-color: #0F172A;
+    }
+    #sphere-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+    }
+    #bg-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .text-shadow {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+  </style>
 </head>
-
 <body class="bg-slate-900 text-slate-200 antialiased">
+  <main id="home">
+    <section id="hero-section">
+      <div id="sphere-container">
+        <canvas id="bg-canvas"></canvas>
+      </div>
 
-<!-- HEADER FULL-WIDTH -->
-<header id="main-header" class="absolute top-0 left-0 right-0 z-50">
-  <div class="w-full px-6 lg:px-12 h-20 flex items-center justify-between">
-    <a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
-    <nav class="hidden md:flex items-center gap-2 text-sm">
-      <a href="#modulos" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Benefícios</a>
-      <a href="#final" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Planos</a>
-      <a href="#captura" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Dúvidas</a>
-      <a href="#captura" class="ml-2 inline-flex items-center rounded-full px-4 py-2 font-semibold text-slate-900 bg-white hover:bg-slate-200 shadow">
-        Agende uma consulta
-      </a>
-    </nav>
-  </div>
-</header>
+      <div class="relative z-10 w-full px-6 lg:px-16 xl:px-24 flex flex-col justify-end min-h-screen">
+        <div class="pb-20 md:pb-24 max-w-5xl">
+          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white text-shadow">
+            Organize os <span class="text-teal-400">processos</span> que fazem o seu <span class="text-teal-400">negócio</span> escalar
+          </h1>
+          <h2 class="mt-4 text-lg md:text-xl lg:text-2xl text-slate-300 text-shadow">
+            Inteligência Artificial para negócios do Digital — automação de atendimento, finanças e operações em um único ecossistema.
+          </h2>
 
-<main id="home">
-  <!-- HERO FULL-WIDTH / ALINHADO À ESQUERDA -->
-  <section id="hero-section">
-    <div id="sphere-container">
-      <canvas id="bg-canvas"></canvas>
-    </div>
-
-    <div class="relative z-10 w-full px-6 lg:px-16 xl:px-24 flex flex-col justify-end min-h-screen">
-      <div class="pb-20 md:pb-24 max-w-5xl">
-        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white text-shadow">
-          Organize os <span class="text-teal-400">processos</span> que fazem o seu <span class="text-teal-400">negócio</span> escalar
-        </h1>
-        <h2 class="mt-4 text-lg md:text-xl lg:text-2xl text-slate-300 text-shadow">
-          Inteligência Artificial para negócios do Digital — automação de atendimento, finanças e operações em um único ecossistema.
-        </h2>
-
-        <div class="mt-8 flex flex-wrap gap-4 items-start">
-          <div class="flex flex-col">
-            <a href="#captura" class="inline-flex items-center justify-center rounded-lg px-6 py-3.5 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow-lg shadow-teal-900/50">
-              Agende sua Consulta
-            </a>
-            <span class="mt-1 text-xs text-slate-400">consultoria grátis</span>
+          <div class="mt-8 flex flex-wrap gap-4 items-start">
+            <div class="flex flex-col">
+              <a href="#captura" class="inline-flex items-center justify-center rounded-lg px-6 py-3.5 font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow-lg shadow-teal-900/50">
+                Agende sua Consulta
+              </a>
+              <span class="mt-1 text-xs text-slate-400">consultoria grátis</span>
+            </div>
+            <div class="flex flex-col">
+              <a href="#" class="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold border border-slate-600 bg-slate-800/50 hover:bg-slate-800 text-white">
+                WhatsApp
+              </a>
+              <span class="mt-1 text-xs text-slate-400">fale diretamente comigo</span>
+            </div>
           </div>
-          <div class="flex flex-col">
-            <a href="https://wa.me/5562982331156?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20consultoria%20de%20IA."
-               target="_blank" rel="noopener"
-               class="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 font-semibold border border-slate-600 bg-slate-800/50 hover:bg-slate-800 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.52 3.48A11.94 11.94 0 0012.07 0C5.41.04.03 5.43.03 12.1c0 2.13.56 4.13 1.55 5.86L0 24l6.2-1.58a12.02 12.02 0 005.86 1.5h.01c6.66 0 12.06-5.38 12.06-12.04 0-3.23-1.26-6.27-3.47-8.4z"/>
-              </svg>
-              WhatsApp
-            </a>
-            <span class="mt-1 text-xs text-slate-400">fale diretamente comigo</span>
-          </div>
-        </div>
 
-        <!-- IMAGEM ADICIONADA LOGO ABAIXO DOS BOTÕES -->
-        <div class="mt-10">
-          <img src="pedra.png" alt="Imagem de demonstração" class="w-full max-w-xl rounded-lg shadow-lg border border-white/10" />
+          <!-- Imagem com legenda abaixo dos botões -->
+          <div class="mt-10 text-center">
+            <img src="pedra.png" alt="Frustração do empreendedor" class="mx-auto w-64 rounded-lg shadow-lg border border-white/10" />
+            <p class="mt-4 text-sm text-slate-400 max-w-md mx-auto">
+              "Quando o dono do negócio tenta fazer tudo, mas não faz os processos básicos para gestão do seu negócio"
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-<!-- ...continua o restante da página exatamente igual... -->
+    </section>
+  </main>
+
+  <!-- Script para esfera -->
+  <script>
+    const sphereContainer = document.getElementById("sphere-container");
+    const canvas = document.getElementById("bg-canvas");
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.z = 3;
+
+    const geometry = new THREE.SphereGeometry(1, 64, 64);
+    const material = new THREE.PointsMaterial({ color: 0x1DE9B6, size: 0.015 });
+    const sphere = new THREE.Points(geometry, material);
+    scene.add(sphere);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      sphere.rotation.y += 0.002;
+      sphere.rotation.x += 0.001;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  </script>
+</body>
+</html>
