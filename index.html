@@ -1,34 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
-  <meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
-  <meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
-  <meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>N1 Inteligência Digital — Consultoria e Automação com IA</title>
+<meta name="description" content="Consultoria e automação com IA para acelerar atendimento, finanças e operações." />
+<meta property="og:title" content="N1 Inteligência Digital — Consultoria e Automação com IA" />
+<meta property="og:description" content="Projetos de IA sob medida para elevar produtividade e resultados." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    html { scroll-behavior: smooth; }
-    :root { color-scheme: dark; }
-    /* Seus estilos... (mantido igual) */
-    .btn-glow { /* ... */ }
-    .focus-ring:focus { outline: none; box-shadow: 0 0 0 3px rgba(29,233,182,.45); }
-    .hidden-section { display: none; }
-    #hero-section { position: relative; overflow: hidden; background-color: #0F172A; }
-    #sphere-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-    #bg-canvas { display: block; width: 100%; height: 100%; }
-    .text-shadow { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); }
-  </style>
+<!-- ANIMAÇÃO 3D: Three.js -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+<style>
+html { scroll-behavior: smooth; }
+:root { color-scheme: dark; }
+
+@keyframes floatIn { 
+  from { opacity: 0; transform: translateY(14px) scale(.98); } 
+  to   { opacity: 1; transform: translateY(0) scale(1); } 
+}
+@keyframes aurora { 
+  0%   { transform: translate(-50%,-50%) rotate(0deg); } 
+  100% { transform: translate(-50%,-50%) rotate(360deg); } 
+}
+@keyframes sweep { 
+  0%   { transform: translateX(-120%); opacity: 0; } 
+  50%  { opacity: .7; } 
+  100% { transform: translateX(120%); opacity: 0; } 
+}
+
+.btn-glow { 
+  position: relative; 
+  isolation: isolate; 
+  overflow: hidden; 
+  box-shadow: 0 8px 28px rgba(0,0,0,.35); 
+}
+.btn-glow::before {
+  content:""; position:absolute; inset:-2px; border-radius:12px;
+  background:
+    radial-gradient(120px 120px at var(--x,50%) var(--y,50%), rgba(29,233,182,.45), transparent 60%),
+    conic-gradient(from 0deg at 50% 50%, #1DE9B6,#14CBA8,#19E2D7,#1DE9B6);
+  filter:blur(16px) saturate(1.2);
+  z-index:-1;
+  animation:aurora 6s linear infinite;
+  opacity:.7;
+}
+.btn-glow::after {
+  content:""; position:absolute; top:0; bottom:0; width:40%; left:-40%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-120%);
+  transition:transform .6s ease; pointer-events:none;
+}
+.btn-glow:hover::after { animation:sweep .9s ease forwards; }
+
+.focus-ring:focus { 
+  outline:none; 
+  box-shadow:0 0 0 3px rgba(29,233,182,.45); 
+}
+
+.hidden-section { display:none; }
+
+#hero-section {
+  position: relative;
+  overflow: hidden;
+  background-color: #0F172A;
+}
+#sphere-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+#bg-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.text-shadow {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+</style>
 </head>
 
 <body class="bg-slate-900 text-slate-200 antialiased">
 
+<!-- HEADER FULL-WIDTH -->
 <header id="main-header" class="absolute top-0 left-0 right-0 z-50">
   <div class="w-full px-6 lg:px-12 h-20 flex items-center justify-between">
     <a href="#" class="font-serif text-xl font-semibold text-white">N1 Inteligência Digital</a>
@@ -36,13 +99,15 @@
       <a href="#modulos" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Benefícios</a>
       <a href="#final" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Planos</a>
       <a href="#captura" class="px-3 py-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Dúvidas</a>
-      <a href="#captura" class="ml-2 inline-flex items-center rounded-full px-4 py-2 font-semibold text-slate-900 bg-white hover:bg-slate-200 shadow">Agende uma consulta</a>
+      <a href="#captura" class="ml-2 inline-flex items-center rounded-full px-4 py-2 font-semibold text-slate-900 bg-white hover:bg-slate-200 shadow">
+        Agende uma consulta
+      </a>
     </nav>
   </div>
 </header>
 
 <main id="home">
-  <!-- HERO SECTION COM IMAGEM ADICIONADA -->
+  <!-- HERO FULL-WIDTH / ALINHADO À ESQUERDA -->
   <section id="hero-section">
     <div id="sphere-container">
       <canvas id="bg-canvas"></canvas>
@@ -77,19 +142,11 @@
           </div>
         </div>
 
-        <!-- 🔥 IMAGEM ADICIONADA ABAIXO DOS BOTÕES -->
+        <!-- IMAGEM ADICIONADA LOGO ABAIXO DOS BOTÕES -->
         <div class="mt-10">
-          <img src="pedra.png" alt="Imagem ilustrativa" class="w-full max-w-4xl rounded-xl shadow-lg border border-white/10" />
+          <img src="pedra.png" alt="Imagem de demonstração" class="w-full max-w-xl rounded-lg shadow-lg border border-white/10" />
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ...continuação da página... (modulos, final, captura, etc.) -->
-
-</main>
-
-<!-- ...restante do seu HTML continua igual... (footer, scripts, animação, etc.) -->
-
-</body>
-</html>
+<!-- ...continua o restante da página exatamente igual... -->
